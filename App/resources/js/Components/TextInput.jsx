@@ -12,9 +12,9 @@ export default forwardRef(function TextInput({ type = 'text', className = '', is
     return (
         <input
             {...props}
-            type={type}
+            type={type}            
             className={
-                'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ' +
+                'bg-text-input-col text-sm text-font-col my-2 py-3 border-text-input-col outline-none focus:border-primary-col focus:ring-border-primary-col rounded-md shadow-sm' +
                 className
             }
             ref={input}

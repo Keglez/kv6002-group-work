@@ -31,6 +31,9 @@ export default function Register() {
             <Head title="Register" />
 
             <form onSubmit={submit}>
+
+                <h1 className="pt-2 pb-4 text-center text-font-col text-xl">Register</h1>
+
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -38,6 +41,7 @@ export default function Register() {
                         id="name"
                         name="name"
                         value={data.name}
+                        placeholder="Enter username"
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
@@ -56,6 +60,7 @@ export default function Register() {
                         type="email"
                         name="email"
                         value={data.email}
+                        placeholder="Enter email"
                         className="mt-1 block w-full"
                         autoComplete="username"
                         onChange={(e) => setData('email', e.target.value)}
@@ -72,6 +77,7 @@ export default function Register() {
                         id="password"
                         type="password"
                         name="password"
+                        placeholder="Enter password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
@@ -90,6 +96,7 @@ export default function Register() {
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
+                        placeholder="Confirm password"
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) => setData('password_confirmation', e.target.value)}
@@ -102,7 +109,7 @@ export default function Register() {
                 <div className="flex items-center justify-end mt-4">
                     <Link
                         href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="underline text-sm text-font-col rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         Already registered?
                     </Link>

@@ -1,18 +1,19 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
+import NavBar from '@/Components/NavBarGuest';
+import Footer from '@/Components/Footer';
 import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
-                </Link>
+        <>
+            <div className="flex flex-col h-screen min-h-screen justify-between bg-background-col">
+                <NavBar />
+                <div className="h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-background-col">            
+                    <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-tertiary-col shadow-md overflow-hidden sm:rounded-lg">
+                        {children}
+                    </div>
+                </div>
+                <Footer />
             </div>
-
-            <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {children}
-            </div>
-        </div>
+        </>
     );
 }

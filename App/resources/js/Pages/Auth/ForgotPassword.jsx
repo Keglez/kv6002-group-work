@@ -19,7 +19,9 @@ export default function ForgotPassword({ status }) {
         <GuestLayout>
             <Head title="Forgot Password" />
 
-            <div className="mb-4 text-sm text-gray-600">
+            <h1 className="pt-2 pb-4 text-center text-font-col text-xl">Forgot Password</h1>
+
+            <div className="mb-4 text-sm text-font-col">
                 Forgot your password? No problem. Just let us know your email address and we will email you a password
                 reset link that will allow you to choose a new one.
             </div>
@@ -32,6 +34,7 @@ export default function ForgotPassword({ status }) {
                     type="email"
                     name="email"
                     value={data.email}
+                    placeholder="Enter email"
                     className="mt-1 block w-full"
                     isFocused={true}
                     onChange={(e) => setData('email', e.target.value)}
