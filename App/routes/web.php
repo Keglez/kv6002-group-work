@@ -35,7 +35,9 @@ use Inertia\Inertia;
  *  the default URL (i.e., https://website.com/).
  */
 Route::get('/', function() {
-    return Inertia::render('Home');
+    return Inertia::render('Home', [
+        'EventController@show'
+    ]);
 });
 
 

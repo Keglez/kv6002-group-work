@@ -20,10 +20,10 @@ export default {
                 'foreground-col': '#0B0B0B',
                 'primary-col': '#FF0000',
                 'secondary-col': '#AF0404',
-                'tertiary-col': '#2D2D2D',
+                'tertiary-col': '#252525',
                 'font-col': '#E4E4E4',
 
-                'text-input-col': '#474747',
+                'text-input-col': '#222222',
             },
         },
     },

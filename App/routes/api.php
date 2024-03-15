@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('posts', PostController::class)->only([
     'destroy', 'show', 'store', 'update'
+]);
+
+
+Route::resource('events', EventController::class)->only([
+    'show'
  ]);
+
+
+// Not Found
+Route::fallback(function(){
+    return response()->json(['message' => 'Resource not found.'], 404);
+});
