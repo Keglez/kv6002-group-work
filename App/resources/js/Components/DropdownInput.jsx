@@ -19,7 +19,7 @@ export default forwardRef(function TextInput({ type = 'select', className = '', 
             }
             ref={input}
         >
-            <option value="" disabled selected>No Filter</option> {/* This is a placeholder option */}
+            <option value="" disabled defaultValue>No Filter</option> {/* This is a placeholder option */}
         </select>
     );
 });

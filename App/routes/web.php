@@ -34,10 +34,8 @@ use Inertia\Inertia;
  *  This route takes the user to the home page via
  *  the default URL (i.e., https://website.com/).
  */
-Route::get('/', function() {
-    return Inertia::render('Home', [
-        'EventController@show'
-    ]);
+Route::get('/dev-info', function () {
+    phpinfo();
 });
 
 
@@ -58,7 +56,7 @@ Route::get('/sl', function () {
     return Inertia::render('Stats/StatList');
 });
 
-require __DIR__.'/auth.php';
-
-
 Route::get('/post/{slug}', [PostController::class, 'show']);
+
+require __DIR__.'/auth.php';
+require __DIR__.'/events.php';
