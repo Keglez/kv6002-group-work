@@ -49,7 +49,7 @@ const Section = ({ title, catePerm, contents, userPermission }) => {
                                 {content.buttons.map((button, buttonIndex) => (
                                     <a
                                         href={route(content.nick)}
-                                        className="px-4 py-2 bg-gray-300 rounded border border-gray-500 hover:bg-gray-400 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
+                                        className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
                                     >
                                         {button.label}
                                     </a>
@@ -126,7 +126,7 @@ const categories = [
 
 const App = ({ userPermissions }) => {
     return (
-        <div className="flex flex-col min-h-screen bg-black text-red-500">
+        <div className="flex flex-col min-h-screen bg-black text-white">
             <NavBar authenticated />
             <div className="flex-1 mt-8 px-4">
                 {categories.map((category, index) => (
