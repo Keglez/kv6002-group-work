@@ -2,8 +2,8 @@ import React from 'react';
 import NavBarGuest from "@/Components/NavBarGuest";
 import NavBarAuthed from "@/Components/NavBarAuthed";
 
-export default function NavBar() {
-    const getAuth = true;
+export default function NavBar(prop) {
+    const getAuth = prop.auth;
 
     if (getAuth) {
         return <NavBarAuthed />;
