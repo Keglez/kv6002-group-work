@@ -7,3 +7,4 @@ Route::get('/', [EventController::class, 'get']) -> name('event');
 
 
 Route::get('/profile/events', [EventController::class, 'eventDashboard']) -> name('event');
+Route::get('/profile/events/create', [EventController::class, 'createEvent']) -> name('create');

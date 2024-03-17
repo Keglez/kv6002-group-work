@@ -29,12 +29,28 @@ class EventController extends Controller
      * Event Dashboard
      */
     public function eventDashboard()
-    {        
+    {
+        $organiser = 'Keglez Co';
+
+        $event = Event::where('event_orgi', '=', $organiser)->get();        
+        
+
+        return Inertia::render('Events/EventDashboard', [
+            'events' => $event,
+            'organiser' => $organiser,
+        ]);
+    }
+
+    /**
+     * Create Event
+     */
+    public function createEvent()
+    {
         //$event = Event::where('event_name', '=', 'Pizza Party Extravaganza')->first();
         $event = Event::all()->take(3);
         
 
-        return Inertia::render('Events/EventDashboard', [
+        return Inertia::render('Events/CreateEvent', [
             'events' => $event,
         ]);
     }

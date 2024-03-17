@@ -2,13 +2,41 @@ import Navbar from '@/Components/NavBar';
 import Footer from '@/Components/Footer';
 import PrimaryButton from '@/Components/PrimaryButton';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { Head  } from '@inertiajs/react';
 
 
 
 
-export default function EventDashboard({ events })
-{    
+export default function EventDashboard({ events, organiser })
+{
+    /**
+     * generate all table rows from data.
+     */
+    const rows = []
+
+    for (const event of events)
+    {
+        rows.push(
+            <tr key={uuidv4()}>
+                <td className="align-top"><p className="m-3 line-clamp-4">{event.event_name}</p></td>
+                <td className="align-top"><p className="m-3 line-clamp-4">{event.event_desc}</p></td>
+                <td className="align-top"><p className="m-3 line-clamp-4">{event.event_date}</p></td>
+                <td><img className="my-3 mx-auto h-28 w-28 object-cover" src={event.event_thumb} alt="image" /></td>
+                <td className="text-center m-3 space-x-2">
+                    <a href="#" className="underline">Edit</a>
+                    <span>|</span>
+                    <a href="#" className="underline">Delete</a>
+                </td>
+            </tr> 
+        );           
+    }    
+
+
+    /**
+     * Render the page.
+     */
     return (    
         <div className="flex flex-col min-h-screen justify-between bg-background-col">
             
@@ -22,7 +50,18 @@ export default function EventDashboard({ events })
             <div className="min-h-screen flex w-full h-full text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">
                 
                 <div className="w-full">
-                    <h1 className="text-xl py-6 bg-foreground-col text-center rounded-lg mb-6">Events Dashboard</h1>
+
+                    <h1 className="flex justify-between text-xl py-6 bg-foreground-col text-center rounded-lg mb-6">
+
+                        <div className="w-2/3 mx-6 flex items-center text-left">
+                            Events Dashboard - {organiser}
+                        </div>                        
+
+
+                        <div className="w-1/3 mx-6 rounded-lg text-right bg-foreground-col">
+                            <a href={route('create')}><PrimaryButton>Create Event</PrimaryButton></a>
+                        </div>
+                    </h1>
 
                     <div className="overflow-x-auto shadow-md rounded-lg">
                         <table className="w-full bg-tertiary-col ">
@@ -36,19 +75,7 @@ export default function EventDashboard({ events })
                                 </tr>
                             </thead>              
                             <tbody>
-
-                                <tr>
-                                    <td className="align-top"><p className="m-3 line-clamp-4">Hot Air Balloon Adventure</p></td>
-                                    <td className="align-top"><p className="m-3 line-clamp-4">Experience the world from a new perspective as you embark on a breathtaking hot air balloon ride with our "Soar Above" adventure. Prepare to be enchanted as you drift serenely through the skies, witnessing stunning landscapes unfold beneath you in a truly unforgettable journey.</p></td>
-                                    <td className="align-top"><p className="m-3 line-clamp-4">24/06/2024 &#91;9:00 - 17:00&#93;</p></td>
-                                    <td><img className="my-3 mx-auto h-28 w-28 object-cover" src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Colorado_Springs_Hot_Air_Balloon_Competition.jpg" alt="image" /></td>
-                                    <td className="text-center m-3 space-x-2">
-                                        <a href="#" className="underline">Edit</a>
-                                        <span>|</span>
-                                        <a href="#" className="underline">Delete</a>
-                                    </td>
-                                </tr>
-                                
+                                {rows}                                
                             </tbody>
                         </table>
                     </div>
@@ -57,8 +84,10 @@ export default function EventDashboard({ events })
                 
 
             </div>
+            
             {/* Display Footer */}
             <Footer />
+            
         </div>
     );
 }

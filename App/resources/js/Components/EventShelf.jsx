@@ -11,6 +11,7 @@ import EventCard from '@/Components/EventCard'
  * @returns
  */
 export default function EventShelf( props ) {
+    
     var events = props.events;    
     var event_one = events.at(0);
     var event_two = events.at(1);
