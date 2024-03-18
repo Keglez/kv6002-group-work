@@ -48,7 +48,8 @@ const Section = ({ title, catePerm, contents, userPermission }) => {
                                 {/* Flex container for buttons */}
                                 {content.buttons.map((button, buttonIndex) => (
                                     <a
-                                        href={route(content.nick)}
+                                        key={buttonIndex}
+                                        href={route(content.nick, content.param)}
                                         className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
                                     >
                                         {button.label}
@@ -70,7 +71,8 @@ const categories = [
         contents: [
             {
                 content: "User Profile",
-                nick: "Excel",
+                nick: "w",
+                param:"Profile",
                 buttons: [
                     {
                         label: "Download Excel",
@@ -86,7 +88,8 @@ const categories = [
         contents: [
             {
                 content: "Register Users On Event",
-                nick: "Excel",
+                nick: "w",
+                param:"UserList",
                 buttons: [
                     {
                         label: "Download Excel",
@@ -96,6 +99,7 @@ const categories = [
             {
                 content: "Event Percentages",
                 nick: "eventPercentGraph",
+                param:null,
                 buttons: [
                     {
                         label: "Open Graphs",
@@ -112,6 +116,17 @@ const categories = [
             {
                 content: "User demographics",
                 nick: "userDemoGraph",
+                param:null,
+                buttons: [
+                    {
+                        label: "Open Graphs",
+                    },
+                ],
+            },
+            {    
+                content: "Event List",
+                nick: "w",
+                param:"EventList",
                 buttons: [
                     {
                         label: "Open Graphs",

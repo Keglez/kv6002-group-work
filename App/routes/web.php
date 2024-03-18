@@ -52,9 +52,6 @@ Route::get('/message', function () {
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-Route::get('/sl', function () {
-    return Inertia::render('Stats/StatList');
-});
 
 Route::get('/post/{slug}', [PostController::class, 'show']);
 
