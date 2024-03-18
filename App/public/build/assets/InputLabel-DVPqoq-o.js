@@ -1,1 +1,0 @@
-import{j as s}from"./app-Buf-ImK6.js";function r({value:t,className:e="",children:o,...n}){return s.jsx("label",{...n,className:"block font-medium text-sm text-font-col "+e,children:t||o})}export{r as I};
