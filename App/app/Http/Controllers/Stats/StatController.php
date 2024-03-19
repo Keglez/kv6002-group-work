@@ -10,13 +10,12 @@ class StatController extends Controller
 {
     public function create()
     {        
-        return Inertia::render('Stats/StatList');
+        $event = Event::all();
+        return Inertia::render('Stats/StatList', [
+            'events' => $event,
+        ]);
     } 
 
-    public function downloadCSV($data)
-    {
-
-    }
     
     public function eventPercentageGraph()
     {

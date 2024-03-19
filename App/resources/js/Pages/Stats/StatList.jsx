@@ -1,145 +1,88 @@
 import React from "react";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Footer from "@/Components/Footer";
 import NavBar from "@/Components/NavBar";
+import Section from "@/Components/Stats/Section"
 
-// // Functionality for downloading Excel file
-// const handleDownloadExcel = (content) => {
-//     // Implement functionality to generate and download Excel file
-//     post(route('Excel'))
 
-// };
 
-// // Functionality for opening a new page
-// const handleOpenPage = (content) => {
-//     // Implement functionality to open a new page
-//     if(content = 1)
-//     {
-//     route('eventPercentages')
-//     }
-//     if(content = 11)
-//     {
-//         post(route('userDemographics'))
-//     }
-//     if(content = 111)
-//     {
-//         post(route('externalData'))
-//     }
-// };
 
-const Section = ({ title, catePerm, contents, userPermission }) => {
-    return (
-        <div className="max-w-xl mx-auto mb-8">
-            {/* Centered container with maximum width */}
-            {catePerm <= userPermission && (
-                <div>
-                    <h2>{title}</h2>
-                    {contents.map((content, index) => (
-                        <div
-                            key={index}
-                            className="flex justify-between items-start mb-2"
-                        >
-                            {/* Flex container for content and buttons */}
-                            <div className="flex-grow ml-4">
-                                {/* Flex container for content with left margin */}
-                                <p>{content.content}</p>
-                            </div>
-                            <div className="flex">
-                                {/* Flex container for buttons */}
-                                {content.buttons.map((button, buttonIndex) => (
-                                    <a
-                                        key={buttonIndex}
-                                        href={route(content.nick, content.param)}
-                                        className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
-                                    >
-                                        {button.label}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
-};
+const App = ({events, userPermissions }) => {
+    const mappedEvents = events.map(event => ({ id: event._id, name: event.event_name }));
+    const categories = [
+        {
+            title: "User Data",
+            permission: 1,
+            contents: [
+                {
+                    content: "User Profile",
+                    nick: "userdata",
+                    param: "n",
+                    buttons: [
+                        {
+                            label: "Download Excel",
+                        },
+                    ],
+                },
+                // Other content...
+            ],
+        },
+        {
+            title: "Event Data",
+            permission: 2,
+            contents: [
+                {
+                    content: "Register Users On Event",
+                    nick: "UserList",
+                    param: "Event",
+                    events: mappedEvents,   
+                    buttons: [
+                        {
+                            label: "Download Excel",
+                        },
+                    ],
+                },
+                {
+                    content: "Event Percentages",
+                    nick: "eventPercentGraph",
+                    param: "n",
+                    buttons: [
+                        {
+                            label: "Open Graphs",
+                        },
+                    ],
+                },
+                // Other content...
+            ],
+        },
+        {
+            title: "Website Data",
+            permission: 3,
+            contents: [
+                {
+                    content: "User demographics",
+                    nick: "userDemoGraph",
+                    param: null,
+                    buttons: [
+                        {
+                            label: "Open Graphs",
+                        },
+                    ],
+                },
+                {
+                    content: "Event List",
+                    nick: "EventList",
+                    param: "n",
+                    buttons: [
+                        {
+                            label: "Open Graphs",
+                        },
+                    ],
+                },
+            ],
+        },
+    ];
+    
 
-const categories = [
-    {
-        title: "User Data",
-        permission: 1,
-        contents: [
-            {
-                content: "User Profile",
-                nick: "w",
-                param:"Profile",
-                buttons: [
-                    {
-                        label: "Download Excel",
-                    },
-                ],
-            },
-            // Other content...
-        ],
-    },
-    {
-        title: "Event Data",
-        permission: 2,
-        contents: [
-            {
-                content: "Register Users On Event",
-                nick: "w",
-                param:"UserList",
-                buttons: [
-                    {
-                        label: "Download Excel",
-                    },
-                ],
-            },
-            {
-                content: "Event Percentages",
-                nick: "eventPercentGraph",
-                param:null,
-                buttons: [
-                    {
-                        label: "Open Graphs",
-                    },
-                ],
-            },
-            // Other content...
-        ],
-    },
-    {
-        title: "Website Data",
-        permission: 3,
-        contents: [
-            {
-                content: "User demographics",
-                nick: "userDemoGraph",
-                param:null,
-                buttons: [
-                    {
-                        label: "Open Graphs",
-                    },
-                ],
-            },
-            {    
-                content: "Event List",
-                nick: "w",
-                param:"EventList",
-                buttons: [
-                    {
-                        label: "Open Graphs",
-                    },
-                ],
-            },
-            // Other content...
-        ],
-    },
-    // Other categories...
-];
-
-const App = ({ userPermissions }) => {
     return (
         <div className="flex flex-col min-h-screen bg-black text-white">
             <NavBar authenticated />
@@ -150,7 +93,7 @@ const App = ({ userPermissions }) => {
                         title={category.title}
                         catePerm={category.permission}
                         contents={category.contents}
-                        userPermission={3} // Requires User setup to retrieve permissions for above
+                        userPermission={3} // Requires User setup to retrieve permissions for above 3 is max perms
                     />
                 ))}
             </div>
