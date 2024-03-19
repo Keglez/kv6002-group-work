@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "@/Components/Footer";
 import NavBar from "@/Components/NavBar";
-import Section from "@/Components/Stats/Section"
+import BarChart from "@/Components/Stats/BarChart"
 
 const App = ({}) => {
 return (

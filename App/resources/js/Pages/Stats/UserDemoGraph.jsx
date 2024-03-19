@@ -8,7 +8,7 @@ return (
     <div className="flex flex-col min-h-screen bg-black text-white">
         <NavBar/>
         <div className="flex-1 mt-8 px-4">
-            
+            <BarChart/>
         </div>
         <Footer />
     </div>
