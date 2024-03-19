@@ -43,9 +43,7 @@ Route::get('/dev-info', function () {
 /**
  * This route takes the user to the messages page.
  */
-Route::get('/message', function () {
-    return Inertia::render('ChatTemp');
-});//->middleware(['auth', 'verified'])->name('message');
+
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,4 +59,4 @@ Route::get('/mail', [MailController::class, 'index']);
 require __DIR__.'/auth.php';
 require __DIR__.'/events.php';
 require __DIR__.'/stats.php';
-
+require __DIR__.'/chats.php';
