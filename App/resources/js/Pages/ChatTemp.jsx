@@ -1,5 +1,5 @@
 
-import ChatScreen from '@/Components/ChatScreen';
+import ChatScreen from '@/Components/Messages/ChatScreen';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import NavBarGuest from '@/Components/NavBarGuest';
 
@@ -10,7 +10,12 @@ import NavBarAuthed from '@/Components/NavBarAuthed';
 import Footer from '@/Components/Footer';
 import { Head, useRemember  } from '@inertiajs/react';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ chats }) {
+
+    console.log(chats);
+    var chat = chats.at(0);
+    console.log(chat.messages.at(0).message);
+
     return (
         <>        
         <div className="flex flex-col min-h-screen justify-between bg-background-col">
@@ -25,7 +30,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 
                 {/* <h1>{events.event_name}</h1> */}
                 
-                <ChatScreen />
+                <ChatScreen query = {chat}/>
                 
 
             </div>
