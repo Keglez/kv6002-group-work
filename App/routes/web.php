@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\MailController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,6 +56,9 @@ Route::get('/message', function () {
 
 Route::get('/post/{slug}', [PostController::class, 'show']);
 
+Route::get('/mail', [MailController::class, 'index']);
+
 require __DIR__.'/auth.php';
 require __DIR__.'/events.php';
 require __DIR__.'/stats.php';
+
