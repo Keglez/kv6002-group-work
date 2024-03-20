@@ -17,7 +17,7 @@ import { Head  } from '@inertiajs/react';
 
 const errors = "";
 
-export default function CreateEvent({ events })
+export default function CreateEvent({ organiser })
 {    
     const[values, setValues] = useState({
         event_orgi: "",
@@ -26,7 +26,8 @@ export default function CreateEvent({ events })
         event_date: "",
         event_start_time: "",
         event_end_time: "",
-        event_image: "",
+        event_thumb: "",
+        event_slug: "",
     })
 
     function handleChange(e) {
@@ -38,22 +39,23 @@ export default function CreateEvent({ events })
         }))
     }
 
-    const submit = (e) => {
-        let na = values.event_name;
-        let de = values.event_desc;
-        let da = values.event_date;
-        let st = values.event_start_time;
-        let et = values.event_end_time;
-        let im = values.event_image;
+    values.event_orgi = organiser;
 
-        let date_compact = da + " [" + st + " - " + et + "]";
+    const submit = (e) => {    
+
+        var slug = (values.event_orgi.replaceAll(" ", "-") + "/" + values.event_name.replaceAll(" ", "-")).toLowerCase();
+
+        const event = {
+            event_orgi: values.event_orgi,
+            event_name: values.event_name,
+            event_desc: values.event_desc,
+            event_date: (values.event_date).replaceAll("-", "/") + " [" + values.event_start_time + " - " + values.event_end_time + "]",
+            event_thumb: values.event_thumb,
+            event_slug: slug,
+        }
         
-        alert(
-            "Name: " + na +
-            "\nDesc: " + de +
-            "\nDate: " + date_compact +
-            "\nImage: " + im
-        );
+        //alert("Submitted... (not really)");
+        route('store', event);
     }
 
     return (    
@@ -81,7 +83,7 @@ export default function CreateEvent({ events })
 
                     <div className="overflow-x-auto shadow-md rounded-lg">
                         <form onSubmit={submit} className="bg-tertiary-col p-6">                            
-                        <div>
+                            <div>
                                 <InputLabel htmlFor="event_orgi" value="Event Organiser" />
                                 <TextInput
                                     id="event_orgi"
@@ -179,9 +181,20 @@ export default function CreateEvent({ events })
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="event_image" value="Event Image" />
+                                <InputLabel htmlFor="event_thumb" value="Event Image" />
 
-                                <FileInput
+                                <TextInput
+                                    id="event_thumb"
+                                    type="text"
+                                    name="event_thumb"
+                                    placeholder="Enter Image URL"
+                                    value={values.event_thumb}                                    
+                                    className="mt-1 block w-full"                                    
+                                    isFocused={true}
+                                    onChange={handleChange}
+                                />
+                                {/*https://www.hdwallpapers.in/thumbs/2020/himalaya_mountains_under_blue_sky_during_daytime_4k_hd_nature-t2.jpg*/}
+                                {/*<FileInput
                                     id="event_image"
                                     type="file"
                                     name="event_image"
@@ -189,7 +202,7 @@ export default function CreateEvent({ events })
                                     className="mt-1 block w-full"
                                     isFocused={true}
                                     onChange={handleChange}
-                                />
+                                />*/}
 
                                 <InputError message={errors.email} className="mt-2" />
                             </div>
