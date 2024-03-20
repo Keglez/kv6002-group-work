@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MailController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,11 +39,6 @@ Route::get('/dashboard', function () {
 Route::get('/dev-info', function () {
     phpinfo();
 });
-
-
-/**
- * This route takes the user to the messages page.
- */
 
 
 Route::middleware('auth')->group(function () {
