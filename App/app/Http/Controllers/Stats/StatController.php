@@ -19,7 +19,7 @@ class StatController extends Controller
     
     public function eventPercentageGraph()
     {
-        return Inertia::render('Stats/eventPercentGraph', []);
+        return Inertia::render('Stats/EventPercentGraph', []);
     }
     public function userDemoGraph()
     {
@@ -27,6 +27,6 @@ class StatController extends Controller
     }
     public function externalDataGraph()
     {
-        return Inertia::render('Stats/externalDataGraph', []);
+        return Inertia::render('Stats/ExternalDataGraph', []);
     }
 }

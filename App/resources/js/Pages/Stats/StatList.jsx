@@ -69,12 +69,22 @@ const App = ({events, userPermissions }) => {
                     ],
                 },
                 {
+                    content: "External Data",
+                    nick: "externalDataGraph",
+                    param: null,
+                    buttons: [
+                        {
+                            label: "Open Graphs",
+                        },
+                    ],
+                },
+                {
                     content: "Event List",
                     nick: "EventList",
                     param: "n",
                     buttons: [
                         {
-                            label: "Open Graphs",
+                            label: "Download Excel",
                         },
                     ],
                 },
