@@ -10,11 +10,12 @@ import NavBarAuthed from '@/Components/NavBarAuthed';
 import Footer from '@/Components/Footer';
 import { Head, useRemember  } from '@inertiajs/react';
 
-export default function Welcome({ chats }) {
+export default function Welcome({ auth, chats }) {
 
     console.log(chats);
     var chat = chats.at(0);
     console.log(chat.messages.at(0).message);
+    console.log(auth.user._id);
 
     return (
         <>        
@@ -24,13 +25,12 @@ export default function Welcome({ chats }) {
 
             <NavBarGuest />
             {/* <NavBarAuthed /> */}            
-            
             {/* Body Container */}
             <div className="flex flex-col w-full  text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">
                 
                 {/* <h1>{events.event_name}</h1> */}
                 
-                <ChatScreen query = {chat}/>
+                <ChatScreen query = {chat} uid = {auth.user._id}/>
                 
 
             </div>

@@ -3,21 +3,31 @@ import { Head, useRemember  } from '@inertiajs/react';
 import Message from '@/Components/Messages/Message';
 
 
-export default function ChatScreen( query ) {
+export default function ChatScreen( query, uid ) {
 
    const iwannadie = query.query;
    const screamingmessages = iwannadie.messages;
    const help = screamingmessages[0].message; // Access the first message using array notation
    const chatMessages = [];
    var i = 0;
+   const user_id = query.uid;
 
    for (const message of screamingmessages)
    {
-
-       chatMessages.push(
+        if (screamingmessages.at(i).user_ids == user_id)
+        {
+            chatMessages.push(
+            <Message inBound = {false} messageContent ={screamingmessages.at(i).message}/>
+            );
+        }
+        else
+        {
+            chatMessages.push(
             <Message inBound = {true} messageContent ={screamingmessages.at(i).message}/>
-       );
-       i=i+1;
+            );
+        }
+       
+        i=i+1;
    }
     //console.log(iwannadie.messages);
 
