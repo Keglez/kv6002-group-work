@@ -2,9 +2,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import { Head, useRemember  } from '@inertiajs/react';
 
 
-export default function Message( props, messageContent ) {
+export default function Message( props ) {
 
-
+   console.log(props.messageContent);
     const message = [];
     if (props.inBound) {
         message.push ( <div className="chat-message">
@@ -12,7 +12,7 @@ export default function Message( props, messageContent ) {
           <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
             <div>
               <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-secondary-col">
-                {messageContent}
+               {props.messageContent}
               </span>
             </div>
           </div>
@@ -25,8 +25,7 @@ export default function Message( props, messageContent ) {
           <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
             <div>
               <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-primary-col text-white ">
-                Your error message says permission denied, npm global installs
-                must be given root privileges.
+                {props.messageContent}
               </span>
             </div>
           </div>

@@ -5,18 +5,21 @@ import Message from '@/Components/Messages/Message';
 
 export default function ChatScreen( query ) {
 
-    const iwannadie = query.chat;
-    const screamingmessages = iwannadie.messages;
-    const chatMessages = [];
-    var i=0;
-    for (const message of screamingmessages)
-    {
-        chatMessages.push(
-            <Message inBound = {true} messageContent = {"amogus"}/>
-            
-        );
-    }
-    console.log(iwannadie.messages)
+   const iwannadie = query.query;
+   const screamingmessages = iwannadie.messages;
+   const help = screamingmessages[0].message; // Access the first message using array notation
+   const chatMessages = [];
+   var i = 0;
+
+   for (const message of screamingmessages)
+   {
+
+       chatMessages.push(
+            <Message inBound = {true} messageContent ={screamingmessages.at(i).message}/>
+       );
+       i=i+1;
+   }
+    //console.log(iwannadie.messages);
 
     /*iwannadie.messages.at(i).message*/
 
