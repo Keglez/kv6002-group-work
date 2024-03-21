@@ -62,7 +62,7 @@ export default function EventCard( props ) {
                     
                 </div>
                 <div className="ml-auto">
-                    <a href={slug}><PrimaryButton>More Info</PrimaryButton></a>
+                    <a href={'/event/' + slug}><PrimaryButton>More Info</PrimaryButton></a>
                 </div>                            
             </div>
             
