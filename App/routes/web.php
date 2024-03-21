@@ -53,7 +53,7 @@ Route::get('/post/{slug}', [PostController::class, 'show']);
 
 Route::get('/mail', [MailController::class, 'mailindex']);
 
-Route::get('/sms', [SmsController::class, 'smsindex']);
+Route::get('/sms', [SmsController::class, 'smsindex'])->name('SMS');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/events.php';
