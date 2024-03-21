@@ -7,7 +7,7 @@ use App\Http\Controllers\Event\EventInformationController;
 
 
 Route::get('/', [EventController::class, 'get']) -> name('event'); // Home page.
-Route::get('/{slug}', [EventInformationController::class, 'show']) -> name('info'); // Event information page.
+Route::get('/event/{slug}', [EventInformationController::class, 'show']) -> name('info'); // Event information page.
 
 
 Route::get('/profile/events', [EventController::class, 'eventDashboard']) -> name('event');
