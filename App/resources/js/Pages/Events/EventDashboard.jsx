@@ -25,9 +25,9 @@ export default function EventDashboard({ events, organiser })
                 <td className="align-top"><p className="m-3 line-clamp-4">{event.event_date}</p></td>
                 <td><img className="my-3 mx-auto h-28 w-28 object-cover" src={event.event_thumb} alt="image" /></td>
                 <td className="text-center m-3 space-x-2">
-                    <a href="#" className="underline">Edit</a>
+                    <a href={route('edit', {id: event._id} )} className="underline">Edit</a>
                     <span>|</span>
-                    <a href="#" className="underline">Delete</a>
+                    <a href={route('delete', {id: event._id} )} className="underline">Delete</a>
                 </td>
             </tr> 
         );           

@@ -16,7 +16,7 @@ export default function EventCard( props ) {
         orgi = event.event_orgi ? event.event_orgi : "Null";
         date = event.event_date ? event.event_date : "Null";
         thumb = event.event_thumb ? event.event_thumb : "Null";
-        slug = event.slug ? event.slug : "Null";
+        slug = event.event_slug ? event.event_slug : "Null";
     }
     else
     {
@@ -62,7 +62,7 @@ export default function EventCard( props ) {
                     
                 </div>
                 <div className="ml-auto">
-                    <PrimaryButton value={slug}>More Info</PrimaryButton>
+                    <a href={slug}><PrimaryButton>More Info</PrimaryButton></a>
                 </div>                            
             </div>
             

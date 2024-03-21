@@ -14,16 +14,16 @@ import { useState } from 'react';
 import { Head, useForm  } from '@inertiajs/react';
 
 
-export default function CreateEvent({ organiser })
+export default function EditEvent({ event })
 {
     const {data, setData, post, processing, errors, reset} = useForm({
-        event_orgi: organiser,
-        event_name: '',
-        event_desc: '',
-        event_date: '',
+        event_orgi: event.event_orgi,
+        event_name: event.event_name,
+        event_desc: event.event_desc,
+        event_date: event.event_name,
         event_start_time: '',
         event_end_time: '',
-        event_thumb: '',
+        event_thumb: event.event_thumb,
         event_slug: '',
     });
     
@@ -31,13 +31,13 @@ export default function CreateEvent({ organiser })
     const submit = (e) => {            
 
         e.preventDefault();
-        post(route('store'));
+        post(route('update', {id: event._id}));
     }
 
     return (    
         <div className="flex flex-col min-h-screen justify-between bg-background-col">
             
-            <Head title="Create Event" />
+            <Head title="Edit Event" />
 
             {/* Display Navbar */}
             <Navbar auth={true} />
@@ -50,7 +50,7 @@ export default function CreateEvent({ organiser })
 
                     <h1 className="flex justify-between text-xl py-6 bg-foreground-col text-center rounded-lg mb-6">
                         <div className="w-2/3 mx-6 flex items-center text-left">
-                            Create Event
+                            Edit Event
                         </div>                        
                         <div className="w-1/3 mx-6 rounded-lg text-right bg-foreground-col">
                             <a href={route('event')}><PrimaryButton><FontAwesomeIcon icon={faLeftLong} /></PrimaryButton></a>
