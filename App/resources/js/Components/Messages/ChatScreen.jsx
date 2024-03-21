@@ -1,6 +1,6 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import SendButton from "@/Components/SendButton";
-import { Head, useRemember } from "@inertiajs/react";
+import { Head, useRemember, useForm } from "@inertiajs/react";
 import Message from "@/Components/Messages/Message";
 
 export default function ChatScreen(query, uid) {
@@ -38,15 +38,22 @@ export default function ChatScreen(query, uid) {
 
     /*iwannadie.messages.at(i).message*/
 
+    const {data, setData, post, processing, errors, reset} = useForm({
+        chat_message: '',
+        _userID: user_id,
+        _chatID: iwannadie._id,
+    }); 
+
     const submit = (e) => {    
           console.log("submit");
 
-          const CurrentChat = {
+          /*const CurrentChat = {
               chat_message: e.chat_box,
               _userID: user_id,
               _chatID: iwannadie._id,
-          }
-           route('send_chat', CurrentChat);
+          }*/
+          e.preventDefault();
+          post(route('send_chat'));
     }
 
 
@@ -176,8 +183,10 @@ export default function ChatScreen(query, uid) {
                         <input
                             type="text"
                             id="chat_box"
+                            value={data.chat_message}
                             placeholder="Write your message!"
                             className="w-full focus:outline-none focus:placeholder-gray-400 text-secondary-col placeholder-secondary-col pl-12 bg-gray-200 rounded-md py-3"
+                            onChange={(e) => setData('chat_message', e.target.value)}
                         />
                         <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">
                             <button

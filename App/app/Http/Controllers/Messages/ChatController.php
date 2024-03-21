@@ -27,21 +27,16 @@ class ChatController extends Controller
 
     public function storeChatData(Request $request)
     {
+        //Checks for correct chat ID
+        $chats = Chat::find($request->_chatID);
 
-        $chats = new Chat;
+        //pushes new message to chat via being an object
+        $chats->push('messages', [(object)[
+            'message' => $request->chat_message,
+            'user_ids'=> $request->_userID,]
+            ]);
 
-        // Create an store new event.        
-        $user_id = $request->_userID;
-        $chat_id = $request->_chatID;
-        $new_message = $request->chat_message;
-
-        // Get events ready to display on dashboard.
-        $chats = Chat::where('_id', '=', $chat_id)->get();
-
-        $chatlog = $chats -> messages;
-
-        echo $chatlog;
-        
+        //saves to database
         $chats->save();
 
     }

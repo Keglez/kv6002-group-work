@@ -12,7 +12,7 @@ class Chat extends Model
     protected $collection = 'chats';
 
     protected $fillable = [
-        '_id',
-        'messages',
+        'user_ids',
+        'message',
     ];
 }
