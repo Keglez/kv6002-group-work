@@ -1,8 +1,9 @@
+import React from 'react';
 import Navbar from '@/Components/NavBar';
 import Footer from '@/Components/Footer';
 import PrimaryButton from '@/Components/PrimaryButton';
 
-import { Head  } from '@inertiajs/react';
+import { Head} from '@inertiajs/react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +18,10 @@ export default function EventInfo({ event })
     const event_date = event.event_date;
     const event_thumb = event.event_thumb;
     const event_slug = event.event_slug;
+
+    const handleJoinEvent = () => {
+        Inertia.post('/sms', { event_id });
+    } 
 
     /**
      * Render the page.
@@ -105,7 +110,7 @@ export default function EventInfo({ event })
 
 
                                 <div>
-                                    <span><PrimaryButton className="w-full justify-center py-5">Join Event</PrimaryButton></span>
+                                    <span><PrimaryButton className="w-full justify-center py-5" onClick={handleJoinEvent}>Join Event</PrimaryButton></span>
                                 </div>                                
                             </div>
 
