@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Event\JoinEventController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MailController;
@@ -57,6 +58,10 @@ Route::get('/post/{slug}', [PostController::class, 'show']);
 Route::get('/mail', [MailController::class, 'mailindex']);
 
 Route::get('/sms', [SmsController::class, 'smsindex'])->name('SMS');
+
+Route::get('/joiningevent/{id}/{eventId}', [JoinEventController::class,'JoinEvent'])->name('Joining_event');
+
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/events.php';
