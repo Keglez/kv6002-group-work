@@ -15,11 +15,11 @@ defaults.plugins.title.align = "start";
 defaults.plugins.title.font.size = 20;
 defaults.plugins.title.color = "black";
 
-const BarChart = () => {
+const PieChart = () => {
   return (
-      <div className="bg-gray-200 rounded-md shadow-md max-w-md max-h-72 m-4 p-4">
-        
-        <Bar
+
+      <div className="bg-gray-200 rounded-md shadow-md p-4 w-11/12 md:w-4/12 lg:w-3/12 xl:w-2/12">
+        <Doughnut
           data={{
             labels: sourceData.map((data) => data.label),
             datasets: [
@@ -31,14 +31,18 @@ const BarChart = () => {
                   "rgba(250, 192, 19, 0.8)",
                   "rgba(253, 135, 135, 0.8)",
                 ],
-                borderRadius: 5,
+                borderColor: [
+                  "rgba(43, 63, 229, 0.8)",
+                  "rgba(250, 192, 19, 0.8)",
+                  "rgba(253, 135, 135, 0.8)",
+                ],
               },
             ],
           }}
           options={{
             plugins: {
               title: {
-                text: "Revenue Source",
+                text: "Revenue Sources",
               },
             },
           }}
@@ -47,4 +51,4 @@ const BarChart = () => {
   );
 };
 
-export default BarChart;
+export default PieChart;

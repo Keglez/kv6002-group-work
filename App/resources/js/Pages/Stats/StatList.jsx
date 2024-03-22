@@ -1,7 +1,8 @@
 import React from "react";
 import Footer from "@/Components/Footer";
-import NavBar from "@/Components/NavBar";
+import NavBar from "@/Components/NavBarAuthed";
 import Section from "@/Components/Stats/Section"
+import NavBarAuth from "@/Components/NavBarAuthed";
 
 
 
@@ -9,6 +10,7 @@ import Section from "@/Components/Stats/Section"
 const App = ({events, userPermissions,auth }) => {
     const mappedEvents = events.map(event => ({ id: event._id, name: event.event_name }));
     const userID = auth.user._id
+
     const categories = [
         {
             title: "User Data",
@@ -106,7 +108,7 @@ const App = ({events, userPermissions,auth }) => {
 
     return (
         <div className="flex flex-col min-h-screen bg-black text-white">
-            <NavBar authenticated />
+            <NavBarAuth/>
             <div className="flex-1 mt-8 px-4">
                 {categories.map((category, index) => (
                     <Section
