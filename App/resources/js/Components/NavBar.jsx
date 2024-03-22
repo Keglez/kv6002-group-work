@@ -4,6 +4,7 @@ import NavBarAuthed from "@/Components/NavBarAuthed";
 
 export default function NavBar(prop) {
     const getAuth = prop.auth;
+
     if (getAuth) {
         return <NavBarAuthed />;
     } else {

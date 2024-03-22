@@ -60,6 +60,7 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
     public function notif(Request $request)
     {
         return Inertia::render('Profile/notif', [
@@ -67,5 +68,4 @@ class ProfileController extends Controller
             'status' => session('status'),
         ]);
     }
-    
 }
