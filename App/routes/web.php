@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SmsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -57,7 +58,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/post/{slug}', [PostController::class, 'show']);
 
-Route::get('/mail', [MailController::class, 'index']);
+Route::get('/mail', [MailController::class, 'mailindex']);
+
+Route::get('/sms', [SmsController::class, 'smsindex'])->name('SMS');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/events.php';

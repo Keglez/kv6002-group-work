@@ -8,7 +8,7 @@ use App\Mail\mailevent;
 
 class MailController extends Controller
 {
-    public function index(){
+    public function mailindex(){
         $subject = 'Test Subject';
         $body = 'test Message';
 

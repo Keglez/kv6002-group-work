@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Messages;
-use App\Http\Controllers\Controller;
 use Inertia\Inertia;
-
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Chat;
@@ -25,34 +24,21 @@ class ChatController extends Controller
     }
 
 
-    /**
-     * Event Dashboard
-     
-    public function eventDashboard()
+
+    public function storeChatData(Request $request)
     {
-        $organiser = 'Keglez Co';
+        //Checks for correct chat ID
+        $chats = Chat::find($request->_chatID);
 
-        $event = Event::where('event_orgi', '=', $organiser)->get();        
-        
+        //pushes new message to chat via being an object
+        $chats->push('messages', [(object)[
+            'message' => $request->chat_message,
+            'user_ids'=> $request->_userID,]
+            ]);
 
-        return Inertia::render('Events/EventDashboard', [
-            'events' => $event,
-            'organiser' => $organiser,
-        ]);
+        //saves to database
+        $chats->save();
+
     }
-    */
-    /**
-     * Create Event
-     
-    public function createEvent()
-    {
-        //$event = Event::where('event_name', '=', 'Pizza Party Extravaganza')->first();
-        $event = Event::all()->take(3);
-        
 
-        return Inertia::render('Events/CreateEvent', [
-            'events' => $event,
-        ]);
-    }
-    */
 }

@@ -6,8 +6,9 @@ import Section from "@/Components/Stats/Section"
 
 
 
-const App = ({events, userPermissions }) => {
+const App = ({events, userPermissions,auth }) => {
     const mappedEvents = events.map(event => ({ id: event._id, name: event.event_name }));
+    const userID = auth.user._id
     const categories = [
         {
             title: "User Data",
@@ -16,7 +17,7 @@ const App = ({events, userPermissions }) => {
                 {
                     content: "User Profile",
                     nick: "userdata",
-                    param: "n",
+                    param: userID,
                     buttons: [
                         {
                             label: "Download Excel",
@@ -33,7 +34,7 @@ const App = ({events, userPermissions }) => {
                 {
                     content: "Register Users On Event",
                     nick: "UserList",
-                    param: "Event",
+                    param: userID,
                     events: mappedEvents,   
                     buttons: [
                         {
@@ -82,6 +83,16 @@ const App = ({events, userPermissions }) => {
                     content: "Event List",
                     nick: "EventList",
                     param: "n",
+                    buttons: [
+                        {
+                            label: "Download Excel",
+                        },
+                    ],
+                },
+                {
+                    content: "User List",
+                    nick: "AllUsers",
+                    param: userID,
                     buttons: [
                         {
                             label: "Download Excel",

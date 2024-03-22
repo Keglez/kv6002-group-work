@@ -11,51 +11,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 import { useState } from 'react';
-import { Head  } from '@inertiajs/react';
+import { Head, useForm  } from '@inertiajs/react';
 
-
-
-const errors = "";
 
 export default function CreateEvent({ organiser })
-{    
-    const[values, setValues] = useState({
-        event_orgi: "",
-        event_name: "",
-        event_desc: "",
-        event_date: "",
-        event_start_time: "",
-        event_end_time: "",
-        event_thumb: "",
-        event_slug: "",
-    })
+{
+    const {data, setData, post, processing, errors, reset} = useForm({
+        event_orgi: organiser,
+        event_name: '',
+        event_desc: '',
+        event_date: '',
+        event_start_time: '',
+        event_end_time: '',
+        event_thumb: '',
+        event_slug: '',
+    });
+    
 
-    function handleChange(e) {
-        const key = e.target.id;
-        const value = e.target.value
-        setValues(values => ({
-            ...values,
-            [key]: value,
-        }))
-    }
+    const submit = (e) => {            
 
-    values.event_orgi = organiser;
-
-    const submit = (e) => {    
-
-        var slug = (values.event_orgi.replaceAll(" ", "-") + "/" + values.event_name.replaceAll(" ", "-")).toLowerCase();
-
-        const event = {
-            event_orgi: values.event_orgi,
-            event_name: values.event_name,
-            event_desc: values.event_desc,
-            event_date: (values.event_date).replaceAll("-", "/") + " [" + values.event_start_time + " - " + values.event_end_time + "]",
-            event_thumb: values.event_thumb,
-            event_slug: slug,
-        }
-        
-        //alert("Submitted... (not really)");
-        route('store', event);
+        e.preventDefault();
+        post(route('store'));
     }
 
     return (    
@@ -82,18 +58,18 @@ export default function CreateEvent({ organiser })
                     </h1>
 
                     <div className="overflow-x-auto shadow-md rounded-lg">
-                        <form onSubmit={submit} className="bg-tertiary-col p-6">                            
+                        <form method="post" onSubmit={submit} className="bg-tertiary-col p-6">                            
                             <div>
                                 <InputLabel htmlFor="event_orgi" value="Event Organiser" />
                                 <TextInput
                                     id="event_orgi"
                                     type="text"
                                     name="event_orgi"
-                                    value={values.event_orgi}
+                                    value={data.event_orgi}
                                     className="mt-1 block w-full"
                                     isFocused={true}
                                     disabled
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_orgi', e.target.value)}
                                 />
                                 <InputError message={errors.email} className="mt-2" />
                             </div>
@@ -105,11 +81,11 @@ export default function CreateEvent({ organiser })
                                     id="event_name"
                                     type="text"
                                     name="event_name"
-                                    value={values.event_name}
+                                    value={data.event_name}
                                     placeholder="Enter Event Name"
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_name', e.target.value)}
                                 />
 
                                 <InputError message={errors.email} className="mt-2" />
@@ -122,11 +98,11 @@ export default function CreateEvent({ organiser })
                                     id="event_desc"
                                     type="text"
                                     name="event_desc"
-                                    value={values.event_desc}
+                                    value={data.event_desc}
                                     placeholder="Enter Event Description"
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_desc', e.target.value)}
                                 />
 
                                 <InputError message={errors.email} className="mt-2" />
@@ -139,10 +115,10 @@ export default function CreateEvent({ organiser })
                                     id="event_date"
                                     type="date"
                                     name="event_date"
-                                    value={values.event_date}
+                                    value={data.event_date}
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_date', e.target.value)}
                                 />
 
                                 <InputError message={errors.email} className="mt-2" />
@@ -155,10 +131,10 @@ export default function CreateEvent({ organiser })
                                     id="event_start_time"
                                     type="time"
                                     name="event_start_time"
-                                    value={values.event_start_time}                                    
+                                    value={data.event_start_time}                                    
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_start_time', e.target.value)}
                                 />
 
                                 <InputError message={errors.email} className="mt-2" />
@@ -171,10 +147,10 @@ export default function CreateEvent({ organiser })
                                     id="event_end_time"
                                     type="time"
                                     name="event_end_time"
-                                    value={values.event_end_time}                                    
+                                    value={data.event_end_time}                                    
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_end_time', e.target.value)}
                                 />
 
                                 <InputError message={errors.email} className="mt-2" />
@@ -188,10 +164,10 @@ export default function CreateEvent({ organiser })
                                     type="text"
                                     name="event_thumb"
                                     placeholder="Enter Image URL"
-                                    value={values.event_thumb}                                    
+                                    value={data.event_thumb}                                    
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
-                                    onChange={handleChange}
+                                    onChange={(e) => setData('event_thumb', e.target.value)}
                                 />
                                 {/*https://www.hdwallpapers.in/thumbs/2020/himalaya_mountains_under_blue_sky_during_daytime_4k_hd_nature-t2.jpg*/}
                                 {/*<FileInput
@@ -209,7 +185,7 @@ export default function CreateEvent({ organiser })
 
 
                             <div className="flex justify-center mt-6">
-                                <PrimaryButton className="justify-center w-1/3 lg:w-1/6">
+                                <PrimaryButton className="justify-center w-1/3 lg:w-1/6" disabled={processing}>
                                     Submit
                                 </PrimaryButton>
                             </div>

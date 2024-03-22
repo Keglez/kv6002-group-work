@@ -10,4 +10,9 @@ class Chat extends Model
 {    
     protected $connection = 'mongodb';
     protected $collection = 'chats';
+
+    protected $fillable = [
+        'user_ids',
+        'message',
+    ];
 }

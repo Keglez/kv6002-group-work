@@ -10,4 +10,13 @@ class Event extends Model
 {    
     protected $connection = 'mongodb';
     protected $collection = 'events';
+
+    protected $fillable = [
+        'event_orgi',
+        'event_name',
+        'event_desc',
+        'event_date',
+        'event_thumb',
+        'event_slug'
+    ];
 }
