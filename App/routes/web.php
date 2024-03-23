@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Event\JoinEventController;
+
+use App\Http\Controllers\ExtCommContorller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\SmsController;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -52,11 +52,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/post/{slug}', [PostController::class, 'show']);
 
-Route::get('/mail', [MailController::class, 'mailindex']);
+Route::get('/mail', [ExtCommContorller::class, 'mailindex']);
 
-Route::get('/sms', [SmsController::class, 'smsindex'])->name('SMS');
+Route::get('/sms', [ExtCommContorller::class, 'smsindex'])->name('SMS');
 
-Route::get('/joiningevent/{id}/{eventId}', [JoinEventController::class,'JoinEvent'])->name('Joining_event');
+Route::get('/joiningevent/{id}/{eventId}', [ExtCommContorller::class,'JoinEvent'])->name('Joining_event');
 
 
 
