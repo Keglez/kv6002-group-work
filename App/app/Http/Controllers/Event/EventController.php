@@ -40,6 +40,31 @@ class EventController extends Controller
         ]);
     }
 
+
+    /**
+     * User side event dashboard.
+     */
+    public function eventUserDashboard()
+    {
+        /**
+         *  Generating dummy data for the user's joined events.
+         */ 
+        $event_ids = array("65f2ece71603d010135d9d18", "65ff830dc07e9d98dc01d795", "65ff838cc07e9d98dc01d796");
+        $event_list = array();
+
+        foreach($event_ids as $id)
+        {
+            $event = Event::find($id);
+            array_push($event_list, $event);
+        }                
+        
+
+        return Inertia::render('Events/UserDashboard', [
+            'events' => $event_list            
+        ]);
+    }
+
+
     
     /**
      * Create Event

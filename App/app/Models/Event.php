@@ -16,6 +16,8 @@ class Event extends Model
         'event_name',
         'event_desc',
         'event_date',
+        'event_location',
+        'event_attendees',
         'event_thumb',
         'event_slug'
     ];

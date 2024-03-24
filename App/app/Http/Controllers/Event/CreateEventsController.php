@@ -29,6 +29,8 @@ class CreateEventsController extends Controller
         $event->event_date = $formatted_date;
         $event->event_thumb = $request->event_thumb;
         $event->event_slug = $event_slug;
+        $event->event_location = $request->event_location;
+        $event->event_attendees = $request->event_attendees;
 
         $event->save();
 
