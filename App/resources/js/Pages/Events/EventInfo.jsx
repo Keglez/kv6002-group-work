@@ -9,8 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function EventInfo({ event })
-{    
+export default function EventInfo({ auth, event })
+{   
+    const user_id =auth.user._id;
     const event_id = event._id;
     const event_orgi = event.event_orgi;
     const event_name = event.event_name;    
@@ -108,12 +109,12 @@ export default function EventInfo({ event })
                                 <div>
                                     <span><a
                                                 href={route("Joining_event", {
-                                                    id: "UserID",
+                                                    id: user_id,
                                                     eventId: event_id,
                                                 })}
                                                 className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
                                             >
-                                            </a>Join Event</span>
+                                            Join Event</a></span>
                                 </div>                                
                             </div>
 

@@ -8,7 +8,9 @@ use App\Http\Controllers\Event\EventAttendeesController;
 
 
 Route::get('/', [EventController::class, 'get']) -> name('event'); // Home page.
-Route::get('/event/{slug}', [EventInformationController::class, 'show']) -> name('info'); // Event information page.
+Route::middleware('auth')->group(function () {
+    Route::get('/event/{slug}', [EventInformationController::class, 'show']) -> name('info'); // Event information page.
+}); 
 
 
 // Events

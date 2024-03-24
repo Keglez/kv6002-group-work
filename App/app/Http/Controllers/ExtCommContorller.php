@@ -25,12 +25,11 @@ class ExtCommContorller extends Controller
                                             "from"=> $sendernumber
                                         ]
                             );
-        dd("Message");
     }
 
-    public function mailindex($subject, $body, $useremail){
-        $subject = 'Test Subject';
-        $body = 'You have Joined the Event';
+    public function mailindex($title, $text, $useremail){
+        $subject = $title;
+        $body = $text;
 
 
         Mail::to($useremail)->send(new mailevent($subject,$body));
@@ -39,8 +38,18 @@ class ExtCommContorller extends Controller
         $userId = $request->id;
         $eventId = $request->eventId;
 
-        $user = User::where('_id', '=', $userId)->get();
+    
+
+        $user = User::where('_id', '=', $userId)->get()->first();
         $event = Event::where('_id', '=', $eventId)->get();
+
+        $phonenumber = "+44 7547 603763";
+        $useremail = $user->email;
+
+        $this->mailindex('Event Joined', 'You have Joined the event', $useremail);
+        $this->smsindex($phonenumber .'You have joined the event');
+
+        return redirect('/');
     }
 
     
