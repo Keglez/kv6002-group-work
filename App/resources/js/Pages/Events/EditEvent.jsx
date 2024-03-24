@@ -23,6 +23,7 @@ export default function EditEvent({ event })
         event_date: event.event_name,
         event_start_time: '',
         event_end_time: '',
+        event_location: event.event_location,
         event_thumb: event.event_thumb,
         event_slug: '',
     });
@@ -153,6 +154,21 @@ export default function EditEvent({ event })
                                     onChange={(e) => setData('event_end_time', e.target.value)}
                                 />
 
+                                <InputError message={errors.email} className="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel htmlFor="event_location" value="Event Location" />
+
+                                <TextInput
+                                    id="event_location"
+                                    type="text"
+                                    name="event_location"
+                                    value={data.event_location}
+                                    className="mt-1 block w-full"
+                                    isFocused={true}
+                                    onChange={(e) => setData('event_location', e.target.value)}
+                                />
                                 <InputError message={errors.email} className="mt-2" />
                             </div>
 
