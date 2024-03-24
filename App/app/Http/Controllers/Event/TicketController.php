@@ -15,11 +15,19 @@ class TicketController extends Controller
     public function get()
     {        
         //$event = Event::where('event_name', '=', 'Pizza Party Extravaganza')->first();
-        $event = Ticket::all()->take(3);
+        {/*$event = Ticket::all()->take(3);
         
 
         return Inertia::render('Events/TicketInfo', [
             'tickets' => $event,
+        ]);*/}
+        $organiser = 'Keglez Co';
+
+        $event = Ticket::where('tickets_num', '>', 0)->get();
+        
+
+        return Inertia::render('Events/TicketDashboard', [
+            'events' => $event,
         ]);
     }
 
