@@ -106,23 +106,15 @@ export default function EventInfo({ auth, event })
                                 </div>
 
 
-                                <div>
-                                    <span><a
-                                                href={route("Joining_event", {
-                                                    id: user_id,
-                                                    eventId: event_id,
-                                                })}
-                                                className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
-                                            >
-                                            Join Event</a></span>
+                                <div className="flex space-x-3">                                    
+                                    <a href={route("Joining_event", {id: user_id, eventId: event_id})} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
+                                        Join Event
+                                    </a>                                                                        
+                                    <a href={route("chats")} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
+                                        Event Chat
+                                    </a>                                    
                                 </div>
-                                <div>
-                                    <span><a
-                                                href={route("chats")}
-                                                className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
-                                            >
-                                            Event Chat</a></span>
-                                </div>    
+                                
                             </div>
 
 
