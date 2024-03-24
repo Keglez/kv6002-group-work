@@ -7,7 +7,7 @@ use App\Http\Controllers\Event\TicketInformationController;
 
 
 Route::get('/tickets', [TicketController::class, 'get']) -> name('tickets'); // Home page.
-/*Route::get('/tickets/{slug}', [EventInformationController::class, 'show']) -> name('info'); // Event information page.
+Route::get('/tickets/{slug}', [EventInformationController::class, 'show']) -> name('info'); // Event information page.
 
 
 Route::get('/profile/tickets', [TicketController::class, 'eventDashboard']) -> name('event');

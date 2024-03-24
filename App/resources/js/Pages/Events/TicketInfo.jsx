@@ -38,7 +38,7 @@ export default function TicketInfo({ tickets })
                     <div className="flex-col justify-between text-xl bg-foreground-col rounded-lg space-y-6 py-6">
 
                         <div className="tracking-wide py-2 w-full mx-6 text-2xl flex items-center">
-                            <span><p className="flex"><div className="underline">{event_orgi}</div> - {event_name}</p></span>
+                            <span><p className="flex">Ticket Info</p></span>
                         </div>
 
                         {/* Event Thumbnail/Picture */}

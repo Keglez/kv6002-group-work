@@ -11,10 +11,11 @@ class CreateTicketController extends Controller
 {
     /**
      * Store the data for the event.
-     */
-     int ticket_number = 0;
+     */    
+
     public function create(Request $request)
     {
+        $ticket_number = 0;
         // Dummy data.
         //$organiser = 'Keglez Co';
 
@@ -26,8 +27,9 @@ class CreateTicketController extends Controller
         $event->tickets_title = $request->event_name;
         $event->tickets_desc = $request->event_desc;
         $event->tickets_date = $formatted_date;
-        $event->tickets_num = ticket_number + 1;
-        ticket_number = ticket_number +1;
+        $event->tickets_num = $ticket_number + 1;
+
+        $ticket_number = $ticket_number + 1;
 
         $event->save();
 

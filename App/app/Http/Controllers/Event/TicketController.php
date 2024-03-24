@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Ticket;
+namespace App\Http\Controllers\Event;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 
@@ -18,7 +18,7 @@ class TicketController extends Controller
         $event = Ticket::all()->take(3);
         
 
-        return Inertia::render('Home', [
+        return Inertia::render('Events/TicketInfo', [
             'tickets' => $event,
         ]);
     }
