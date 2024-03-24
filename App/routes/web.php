@@ -67,3 +67,4 @@ require __DIR__.'/auth.php';
 require __DIR__.'/events.php';
 require __DIR__.'/stats.php';
 require __DIR__.'/chats.php';
+require __DIR__.'/tickets.php';
