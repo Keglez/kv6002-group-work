@@ -14,26 +14,26 @@ import { useState } from 'react';
 import { Head, useForm  } from '@inertiajs/react';
 
 
-export default function CreateTicket({ organiser })
+export default function EditTicket({ event })
 {
     const {data, setData, post, processing, errors, reset} = useForm({
-        tickets_title: '',
-        tickets_desc: '',
-        tickets_date: '',
-        tickets_num: '',
+        tickets_title: event.tickets_title,
+        tickets_desc: event.tickets_desc,
+        tickets_date: event.tickets_date,
+        tickets_num: 0,
     });
     
 
     const submit = (e) => {            
 
         e.preventDefault();
-        post(route('store'));
+        post(route('update', {id: event._id}));
     }
 
     return (    
         <div className="flex flex-col min-h-screen justify-between bg-background-col">
             
-            <Head title="Create Ticket" />
+            <Head title="Edit Ticket" />
 
             {/* Display Navbar */}
             <Navbar auth={true} />
@@ -46,7 +46,7 @@ export default function CreateTicket({ organiser })
 
                     <h1 className="flex justify-between text-xl py-6 bg-foreground-col text-center rounded-lg mb-6">
                         <div className="w-2/3 mx-6 flex items-center text-left">
-                            Create Ticket
+                            Edit Ticket
                         </div>                        
                         <div className="w-1/3 mx-6 rounded-lg text-right bg-foreground-col">
                             <a href={route('event')}><PrimaryButton><FontAwesomeIcon icon={faLeftLong} /></PrimaryButton></a>
@@ -56,7 +56,7 @@ export default function CreateTicket({ organiser })
                     <div className="overflow-x-auto shadow-md rounded-lg">
                         <form method="post" onSubmit={submit} className="bg-tertiary-col p-6">                            
                             <div>
-                                <InputLabel htmlFor="event_orgi" value="Site Organiser Label" />
+                                <InputLabel htmlFor="event_orgi" value="Ticket Organiser Label" />
                                 <TextInput
                                     id="event_orgi"
                                     type="text"
@@ -78,7 +78,7 @@ export default function CreateTicket({ organiser })
                                     type="text"
                                     name="event_name"
                                     value={data.event_name}
-                                    placeholder="Enter Event Name"
+                                    placeholder={event.tickets_title}
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
                                     onChange={(e) => setData('event_name', e.target.value)}
@@ -95,7 +95,7 @@ export default function CreateTicket({ organiser })
                                     type="text"
                                     name="event_desc"
                                     value={data.event_desc}
-                                    placeholder="Enter Event Description"
+                                    placeholder={event.tickets_desc}
                                     className="mt-1 block w-full"                                    
                                     isFocused={true}
                                     onChange={(e) => setData('event_desc', e.target.value)}

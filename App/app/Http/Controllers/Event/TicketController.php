@@ -48,7 +48,7 @@ class TicketController extends Controller
         //$event = Event::where('event_name', '=', 'Pizza Party Extravaganza')->first();
         $organiser = "Keglez Co";        
 
-        return Inertia::render('Events/CreateEvent', [
+        return Inertia::render('Events/CreateTicket', [
             'organiser' => $organiser,
         ]);
     }
@@ -59,9 +59,9 @@ class TicketController extends Controller
      */
     public function editForm(Request $request)
     {        
-        $event = Event::find($request->id);
+        $event = Ticket::find($request->id);
         
-        return Inertia::render('Events/EditEvent', [
+        return Inertia::render('Events/EditTicket', [
             'event' => $event,
         ]);
     }    

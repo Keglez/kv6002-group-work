@@ -46,7 +46,7 @@ class CreateTicketController extends Controller
      */
     public function destroy(Request $request)
     {        
-        $event = Event::find($request->id);
+        $event = Ticket::find($request->id);
         $event->delete();
 
         return redirect('profile/tickets');

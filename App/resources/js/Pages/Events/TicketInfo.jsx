@@ -23,7 +23,7 @@ export default function TicketInfo({ tickets })
     return (    
         <div className="flex flex-col min-h-screen justify-between bg-background-col">
             
-            <Head title="Event Dashboard" />
+            <Head title="Ticket Dashboard" />
 
 
             {/* Display Navbar */}
@@ -41,49 +41,7 @@ export default function TicketInfo({ tickets })
                             <span><p className="flex">Ticket Info</p></span>
                         </div>
 
-                        {/* Event Thumbnail/Picture */}
-                        <div className="w-full flex px-8 space-x-6">
-                            
-
-                            <div className="w-1/2">
-                                <img src={event_thumb} className="object-cover w-full rounded" alt="image" />
-                            </div>
-                            
-
-                            {/* Extra Images */}
-                            <div className="w-1/2 flex flex-col space-y-6">
-
-                                <div className="w-full h-1/2 flex flex-row space-x-6">
-                                    <div className="flex text-5xl items-center justify-center bg-tertiary-col w-1/2 rounded">
-                                        <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
-                                    </div>
-
-                                    <div className="flex text-5xl items-center justify-center bg-tertiary-col w-1/2 rounded">
-                                        <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
-                                    </div>
-
-                                    {/* Swap out for real image functionality in future versions. */}
-                                    {/* <img src={event_thumb} className="object-cover pr-3 w-1/2 rounded" alt="image" /> */}
-                                    {/* <img src={event_thumb} className="object-cover pl-3 w-1/2 rounded" alt="image" /> */}
-                                </div>
-
-                                <div className="w-full h-1/2 flex flex-row space-x-6">
-                                    <div className="flex text-5xl items-center justify-center bg-tertiary-col w-1/2 rounded">
-                                        <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
-                                    </div>
-
-                                    <div className="flex text-5xl items-center justify-center bg-tertiary-col w-1/2 rounded">
-                                        <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
-                                    </div>
-
-                                    {/* Swap out for real image functionality in future versions. */}
-                                    {/* <img src={event_thumb} className="object-cover pr-3 w-1/2 rounded" alt="image" /> */}
-                                    {/* <img src={event_thumb} className="object-cover pl-3 w-1/2 rounded" alt="image" /> */}
-                                </div>
-
-                            </div>
-
-                        </div>
+                        
                         
 
                         <div className="flex items-middle px-8 text-left space-x-6 text-base">
@@ -92,7 +50,7 @@ export default function TicketInfo({ tickets })
                                 
                                 <div className="flex flex-col">
                                     <span className="underline pb-3">Time:</span>
-                                    <span className="pb-3">{event_date}</span>
+                                    <span className="pb-3">{tickets_date}</span>
                                 </div>       
 
                                 <div className="flex flex-col">
@@ -104,21 +62,15 @@ export default function TicketInfo({ tickets })
 
 
                                 <div>
-                                    <span><a
-                                                href={route("Joining_event", {
-                                                    id: "UserID",
-                                                    eventId: tickets_id,
-                                                })}
-                                                className="px-4 py-2 bg-red-200 rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50"
-                                            >
-                                            </a>Join Event</span>
+                                    <span>
+                                            Watch Ticket</span>
                                 </div>                                
                             </div>
 
 
                             <div className="w-2/3">
                                 <h2 className="underline pb-3">Description:</h2>
-                                {event_desc}
+                                {tickets_desc}
                             </div>
                         </div>
                         

@@ -15,22 +15,23 @@ export default function TicketDashboard({ events, organiser })
      * generate all table rows from data.
      */
     const rows = []
-
+    var ticketnumber = 0;
     for (const event of events)
     {
         rows.push(
             <tr key={uuidv4()}>
-                <td className="align-top"><p className="m-3 line-clamp-4">{event.event_name}</p></td>
-                <td className="align-top"><p className="m-3 line-clamp-4">{event.event_desc}</p></td>
-                <td className="align-top"><p className="m-3 line-clamp-4">{event.event_date}</p></td>
-                <td><img className="my-3 mx-auto h-28 w-28 object-cover" src={event.event_thumb} alt="image" /></td>
+                <td className="align-top"><p className="m-3 line-clamp-4">{event.tickets_title}</p></td>
+                <td className="align-top"><p className="m-3 line-clamp-4">{event.tickets_desc}</p></td>
+                <td className="align-top"><p className="m-3 line-clamp-4">{event.tickets_date}</p></td>
+                <td className="align-top"><p className="m-3 line-clamp-4">{ticketnumber}</p></td>
                 <td className="text-center m-3 space-x-2">
-                    <a href={route('edit', {id: event._id} )} className="underline">Edit</a>
+                    {/*<a href={route('edit', {id: event._id} )} className="underline">Edit</a>*/}
                     <span>|</span>
                     <a href={route('delete', {id: event._id} )} className="underline">Delete</a>
                 </td>
             </tr> 
-        );           
+        );
+        ticketnumber = ticketnumber+1;
     }    
 
 
@@ -54,12 +55,12 @@ export default function TicketDashboard({ events, organiser })
                     <h1 className="flex justify-between text-xl py-6 bg-foreground-col text-center rounded-lg mb-6">
 
                         <div className="w-2/3 mx-6 flex items-center text-left">
-                            Events Dashboard - {organiser}
+                            Ticket Dashboard - Management
                         </div>                        
 
 
                         <div className="w-1/3 mx-6 rounded-lg text-right bg-foreground-col">
-                            <a href={route('create')}><PrimaryButton>Create Event</PrimaryButton></a>
+                            <a href={route('create')}><PrimaryButton>Create Ticket</PrimaryButton></a>
                         </div>
                     </h1>
 
@@ -67,10 +68,10 @@ export default function TicketDashboard({ events, organiser })
                         <table className="w-full bg-tertiary-col ">
                             <thead className="bg-foreground-col">
                                 <tr className="">
-                                    <th className="p-6 w-1/6 text-center">Event Name</th>
-                                    <th className="p-6 w-1/3 text-center">Event Description</th>
-                                    <th className="p-6 w-1/6 text-center">Event Date</th>                                
-                                    <th className="p-6 w-1/6 text-center">Event Thumbnail</th>
+                                    <th className="p-6 w-1/6 text-center">Ticket Name</th>
+                                    <th className="p-6 w-1/3 text-center">Ticket Description</th>
+                                    <th className="p-6 w-1/6 text-center">Ticket Date</th>                                
+                                    <th className="p-6 w-1/6 text-center">Ticket Number</th>
                                     <th className="p-6 w-1/6 text-center">Options</th>
                                 </tr>
                             </thead>              
