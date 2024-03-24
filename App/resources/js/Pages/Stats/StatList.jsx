@@ -117,7 +117,9 @@ const App = ({events, userPermissions,auth }) => {
                         userPermission={3} // Requires User setup to retrieve permissions for above 3 is max perms
                     />
                 ))}
+
             </div>
+            <div className="min-h-32"> </div>
             <Footer />
         </div>
     );
