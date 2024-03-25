@@ -20,7 +20,7 @@ const App = ({
     return (
         <div className="flex flex-col min-h-screen bg-black text-white">
             <NavBar prop={auth} />
-            <div className="grid grid-cols-3 flex-1 mt-8 px-4">
+            <div className="grid grid-cols-3 flex-1 mt-8 px-4  min-h-screen">
                 <div className="bg-foreground-col rounded-md shadow-md max-w-md max-h-72 m-4 p-4">
                     <h1 className="text-2xl font-bold">Your Events</h1>
                     {eList.map((item, index) => (

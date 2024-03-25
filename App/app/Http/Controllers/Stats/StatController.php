@@ -29,15 +29,15 @@ class StatController extends Controller
         $AttendanceRate = rand(60, 100);
         $EventAttendance = [];
         $EventFeedback = [];
+        $AttendeePerEvent = [];
 
         foreach ($events as $event) {
             $eventNames[] = $event->event_name;
             $avgAge[] = rand($min, $max);
-            $EventAttendance[] = ["label" => $event->event_name, "Amount" => rand(70, 100)];
+            $EventAttendance[] = ["label" => $event->event_name,"Amount" => rand(50, 100)];
             $EventFeedback[] = ["label" => $event->event_name, "Amount" => rand(1, 5)];
             $AttendeePerEvent[] = ["label" => $event->event_name, "Amount" => count($event->event_attendees)];
         }
-
         return Inertia::render('Stats/EventPercentGraph', [
             'EventList' => $eventNames,
             'AverageAge' => $avgAge,
