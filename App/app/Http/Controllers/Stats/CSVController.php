@@ -44,7 +44,7 @@ class CSVController extends Controller
     public function getUserData(Request $request)
     {
 
-        $users = User::find($request->id)->get()->first();
+        $users = User::where('_id', $request->id)->get()->first();
         // Generate CSV content
         $csvData = [
             [
