@@ -116,18 +116,21 @@ class CSVController extends Controller
     {
         echo $request->eventId;
         $event = Event::where('_id', '=', $request->eventId)->get()->first();
-        $attendees = [];
-        foreach ($event->attendees as $attendee) {
-            $users = User::find($request->id);
-            array_push($attendees, $attendee['user_id']);
+        $users = [];
+        if($event->event_attendees)
+        {
+            foreach($event->event_attendees as $attendee)
+            {
+                $user = User::find($attendee['user_id']);
+                array_push($users, $user);
+            }
         }
         // Generate CSV content
-        $csvData = [['Event id', 'Event Name', 'User Name', 'User Email'],];
-        foreach ($attendees as $attendee) {
+        $csvData = [['Event Id', 'Event Name', 'User Name', 'User Email'],];
+        foreach ($users as $attendee) {
             $csvData[] = [
                 $request->eventId,
                 $event->event_name,
-                $attendee->_id,
                 $attendee->name,
                 $attendee->email
             ];

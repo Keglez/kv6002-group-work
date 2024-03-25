@@ -8,7 +8,7 @@ import Section from "@/Components/Stats/Section"
 
 const App = ({events, userPermissions,auth }) => {
     const mappedEvents = events.map(event => ({ id: event._id, name: event.event_name }));
-    const userID = auth.user._id
+    const userID = 1
     const categories = [
         {
             title: "User Data",
@@ -45,7 +45,7 @@ const App = ({events, userPermissions,auth }) => {
                 {
                     content: "Event Percentages",
                     nick: "eventPercentGraph",
-                    param: "n",
+                    param: userID,
                     buttons: [
                         {
                             label: "Open Graphs",
@@ -62,7 +62,7 @@ const App = ({events, userPermissions,auth }) => {
                 {
                     content: "User demographics",
                     nick: "userDemoGraph",
-                    param: null,
+                    param: userID,
                     buttons: [
                         {
                             label: "Open Graphs",
@@ -72,7 +72,7 @@ const App = ({events, userPermissions,auth }) => {
                 {
                     content: "External Data",
                     nick: "externalDataGraph",
-                    param: null,
+                    param: userID,
                     buttons: [
                         {
                             label: "Open Graphs",
@@ -106,7 +106,7 @@ const App = ({events, userPermissions,auth }) => {
 
     return (
         <div className="flex flex-col min-h-screen bg-black text-white">
-            <NavBar authenticated />
+            <NavBar prop={auth} />
             <div className="flex-1 mt-8 px-4">
                 {categories.map((category, index) => (
                     <Section

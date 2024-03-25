@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import ResponsiveNavLink from "./ResponsiveNavLink";
 import Dropdown from "./Dropdown";
 export default function NavBarAuth() {
     return (
@@ -180,9 +181,11 @@ export default function NavBarAuth() {
                                 </div>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
-                                <Dropdown.Link href="#">Profile</Dropdown.Link>
-                                <Dropdown.Link href={route("StatList")}>User Data</Dropdown.Link>
-                                <Dropdown.Link href="#">Log Out</Dropdown.Link>
+                                <ResponsiveNavLink href="#">Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route("StatList")}>User Data</ResponsiveNavLink>
+                                <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                                Log Out
+                            </ResponsiveNavLink>
                             </Dropdown.Content>
                         </Dropdown>
                     </div>

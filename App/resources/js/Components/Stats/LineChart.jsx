@@ -15,9 +15,12 @@ defaults.plugins.title.align = "start";
 defaults.plugins.title.font.size = 20;
 defaults.plugins.title.color = "black";
 
-const LineChart = () => {
+const LineChart = ({ chartName, chartData }) => {
+  // if (!Array.isArray(chartData) || chartData.length === 0) {
+  //   return <div>No data available</div>;
+  // }
   return (
-    <div className="bg-gray-200 rounded-md shadow-md max-w-md max-h-72 m-4 p-4">
+    <div className="bg-foreground-col rounded-md shadow-md max-w-md max-h-72 m-4 p-4">
         <Line
           data={{
             labels: revenueData.map((data) => data.label),
@@ -44,7 +47,7 @@ const LineChart = () => {
             },
             plugins: {
               title: {
-                text: "Monthly Revenue & Cost",
+                text: chartName,
               },
             },
           }}
