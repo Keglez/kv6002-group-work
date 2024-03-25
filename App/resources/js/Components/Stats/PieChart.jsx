@@ -1,7 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, defaults } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
-
+import { useEffect, useState } from 'react';
 // No need to import CSS file when using Tailwind CSS
 
 import revenueData from "./data/revenueData.json";
@@ -19,7 +19,13 @@ const PieChart = ({ chartName, chartData }) => {
   if (!Array.isArray(chartData) || chartData.length === 0) {
     return <div>No data available</div>;
   }
+  const [backgroundColor, setBackgroundColor] = useState([]);
 
+  useEffect(() => {
+    // Generate random colors for each dataset
+    const randomColors = chartData.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.8)`);
+    setBackgroundColor(randomColors);
+  }, [chartData]);
   // Now you can use map function safely
   return (
     <div className="bg-foreground-col rounded-md shadow-md max-w-md max-h-72 m-4 p-4">
@@ -30,16 +36,8 @@ const PieChart = ({ chartName, chartData }) => {
             {
               label: "Was",
               data: chartData.map((item) => item.Amount),
-              backgroundColor: [
-                "rgba(43, 63, 229, 0.8)",
-                "rgba(250, 192, 19, 0.8)",
-                "rgba(253, 135, 135, 0.8)",
-              ],
-              borderColor: [
-                "rgba(43, 63, 229, 0.8)",
-                "rgba(250, 192, 19, 0.8)",
-                "rgba(253, 135, 135, 0.8)",
-              ],
+              backgroundColor: backgroundColor,
+              borderColor: backgroundColor,
             },
           ],
         }}
@@ -47,6 +45,7 @@ const PieChart = ({ chartName, chartData }) => {
           plugins: {
             title: {
               text: chartName,
+              color: 'white',
             },
           },
         }}

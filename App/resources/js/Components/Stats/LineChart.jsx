@@ -48,6 +48,7 @@ const LineChart = ({ chartName, chartData }) => {
             plugins: {
               title: {
                 text: chartName,
+                color: 'white',
               },
             },
           }}

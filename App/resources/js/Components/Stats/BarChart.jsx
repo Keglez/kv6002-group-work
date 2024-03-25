@@ -5,12 +5,23 @@ const BarChart = ({ chartName, chartData }) => {
   if (!Array.isArray(chartData) || chartData.length === 0) {
     return <div>No data available</div>;
   }
-
   const backgroundColors = [
-    "rgba(43, 63, 229, 0.8)",
-    "rgba(250, 192, 19, 0.8)",
-    "rgba(253, 135, 135, 0.8)",
-    // Add more colors as needed
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+
+    // More Colours
   ];
 
   return (
@@ -20,7 +31,8 @@ const BarChart = ({ chartName, chartData }) => {
           labels: chartData.map((data) => data.label),
           datasets: chartData.map((data, index) => ({
             label: data.label,
-            data: [data.Amount], // Wrap data in an array to handle multiple datasets
+            color: 'white',
+            data: [data.Amount], // Make array of data
             backgroundColor: backgroundColors[index % backgroundColors.length], // Use different color for each dataset
             borderRadius: 5,
           })),
@@ -29,6 +41,7 @@ const BarChart = ({ chartName, chartData }) => {
           plugins: {
             title: {
               display: true,
+              color: 'white',
               text: chartName,
             },
           },
