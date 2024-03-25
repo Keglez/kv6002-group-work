@@ -17,9 +17,9 @@ return (
                     <h1><br /> Amount of events : {amountOfEvents}</h1>
                     <h1><br /> Amount of users : {amountOfUsers}</h1>
                 </div>
-            <PieChart chartName="" chartData={sharesByEvent}/>
-            <PieChart chartName="" chartData={popularLocations}/>
-            <BarChart chartName="" chartData={eventsByCategory}/>
+            <PieChart chartName="Shares By Event" chartData={sharesByEvent}/>
+            <PieChart chartName="Locatinos used by events" chartData={popularLocations}/>
+            <BarChart chartName="Popular Categories" chartData={eventsByCategory}/>
             <LineChart chartName="Finances" chartData=""/>
         </div>
         <Footer />

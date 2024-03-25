@@ -44,22 +44,19 @@ class CSVController extends Controller
     public function getUserData(Request $request)
     {
 
-        $users = User::find($request->id);
+        $users = User::find($request->id)->get()->first();
         // Generate CSV content
         $csvData = [
             [
                 'Name',
                 'Email'
+            ],
+            [
+                $users->name,
+                $users->email
             ]
         ];
 
-        foreach ($users as $user) {
-            $csvData[] = [
-                $user->_id,
-                $user->name,
-                $user->email
-            ];
-        }
 
         // Add more data as needed
 
