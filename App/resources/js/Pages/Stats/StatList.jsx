@@ -8,7 +8,7 @@ import Section from "@/Components/Stats/Section"
 
 const App = ({events, userPermissions,auth }) => {
     const mappedEvents = events.map(event => ({ id: event._id, name: event.event_name }));
-    const userID = 1
+    const userID = auth.user._id;
     const categories = [
         {
             title: "User Data",
