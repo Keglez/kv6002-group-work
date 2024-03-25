@@ -27,43 +27,39 @@ class EventController extends Controller
     /**
      * Event Dashboard
      */
-    public function eventDashboard()
+    public function eventDashboard(Request $request)
     {
-        $organiser = 'Keglez Co';
+        $permission = 0;
 
-        $event = Event::where('event_orgi', '=', $organiser)->get();
-        
-
-        return Inertia::render('Events/EventDashboard', [
-            'events' => $event,
-            'organiser' => $organiser,
-        ]);
-    }
-
-
-    /**
-     * User side event dashboard.
-     */
-    public function eventUserDashboard()
-    {
-        /**
-         *  Generating dummy data for the user's joined events.
-         */ 
-        $event_ids = array("65f2ece71603d010135d9d18", "65ff830dc07e9d98dc01d795", "65ff838cc07e9d98dc01d796");
-        $event_list = array();
-
-        foreach($event_ids as $id)
+        if ($permission == 0) // Generate User Page
         {
-            $event = Event::find($id);
-            array_push($event_list, $event);
-        }                
-        
+            $organiser = 'Keglez Co';        
+            $event = Event::where('event_orgi', '=', $organiser)->get();
 
-        return Inertia::render('Events/UserDashboard', [
-            'events' => $event_list            
-        ]);
+            return Inertia::render('Events/UserDashboard', [
+                'events' => $event,
+                'organiser' => $organiser,
+            ]);            
+        }
+        else // Generate Organiser Page
+        {
+            /**
+             *  Generating dummy data for the user's joined events.
+             */ 
+            $event_ids = array("65f2ece71603d010135d9d18", "65ff830dc07e9d98dc01d795", "65ff838cc07e9d98dc01d796");
+            $event_list = array();
+
+            foreach($event_ids as $id)
+            {
+                $event = Event::find($id);
+                array_push($event_list, $event);
+            }      
+
+            return Inertia::render('Events/EventDashboard', [
+                'events' => $event_list 
+            ]);
+        }
     }
-
 
     
     /**
@@ -71,12 +67,18 @@ class EventController extends Controller
      */
     public function createEventForm()
     {
+        $permission = 0;
         //$event = Event::where('event_name', '=', 'Pizza Party Extravaganza')->first();
-        $organiser = "Keglez Co";        
+        $organiser = "Keglez Co";
 
-        return Inertia::render('Events/CreateEvent', [
-            'organiser' => $organiser,
-        ]);
+        if($permission == 1) // If the user is an organiser...
+        {
+            return Inertia::render('Events/CreateEvent', [
+                'organiser' => $organiser,
+            ]);
+        }
+
+        return redirect('/profile/events');
     }
 
 
@@ -84,12 +86,19 @@ class EventController extends Controller
      *  Display the event form and it's data using the event data.
      */
     public function editForm(Request $request)
-    {        
-        $event = Event::find($request->id);
+    {
+        $permission = 0; 
+
+        if ($permission == 1) // If the user is an organiser...
+        {
+            $event = Event::find($request->id);
         
-        return Inertia::render('Events/EditEvent', [
-            'event' => $event,
-        ]);
+            return Inertia::render('Events/EditEvent', [
+                'event' => $event,
+            ]);
+        }
+
+        return redirect('/profile/events');
     }    
     
 }

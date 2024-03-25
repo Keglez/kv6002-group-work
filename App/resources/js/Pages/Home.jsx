@@ -9,7 +9,7 @@ import NavBar from '@/Components/NavBar';
 
 
 
-export default function Home({ events ,auth}) 
+export default function Home({ events, auth}) 
 {
     const [ev, setEvents] = useRemember([]);
 
