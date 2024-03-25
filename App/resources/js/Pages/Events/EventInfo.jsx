@@ -11,7 +11,7 @@ import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 export default function EventInfo({ auth, event })
 {   
-    const user_id =auth.user._id;
+    const user_id = auth.user._id;
     const event_id = event._id;
     const event_orgi = event.event_orgi;
     const event_name = event.event_name;    
@@ -30,11 +30,11 @@ export default function EventInfo({ auth, event })
 
 
             {/* Display Navbar */}
-            <Navbar auth={true} />
+            <Navbar prop={auth} />
        
             
             {/* Body Container */}
-            <div className="min-h-screen flex w-full h-full text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">
+            <div className="flex w-full h-full text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">
                 
                 <div className="w-full">
 

@@ -181,7 +181,8 @@ export default function NavBarAuth() {
                                 </div>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
-                                <ResponsiveNavLink href="#">Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href="/profile">Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route('event')}>My Events</ResponsiveNavLink>
                                 <ResponsiveNavLink href={route("StatList")}>User Data</ResponsiveNavLink>
                                 <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
