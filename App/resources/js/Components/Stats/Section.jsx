@@ -4,9 +4,9 @@ const Section = ({ title, catePerm, contents, userPermission }) => {
     // Initialize selected event ID with a default value
     const defaultSelectedEvent =
         contents &&
-        contents.length > 0 &&
-        contents[0].events &&
-        contents[0].events.length > 0
+            contents.length > 0 &&
+            contents[0].events &&
+            contents[0].events.length > 0
             ? contents[0].events[0].id
             : "";
     const [selectedEvent, setSelectedEvent] = useState(defaultSelectedEvent);

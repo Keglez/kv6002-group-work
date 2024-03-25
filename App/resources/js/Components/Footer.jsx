@@ -3,7 +3,7 @@ export default function PrimaryButton() {
     <>
         {/*Footer container*/}
         {/*!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. */}
-        <footer className="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-foreground-col dark:text-white">
+        <footer className="flex flex-col items-center bg-foreground-col text-center text-surface dark:bg-foreground-col dark:text-white">
             
             <div className="container pt-6 pb-1">
                 {/* Social media icons container */}
