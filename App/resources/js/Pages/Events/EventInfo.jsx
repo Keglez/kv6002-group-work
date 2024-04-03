@@ -110,7 +110,7 @@ export default function EventInfo({ auth, event })
                                     <a href={route("Joining_event", {id: user_id, eventId: event_id})} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
                                         Join Event
                                     </a>                                                                        
-                                    <a href={route("chats")} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
+                                    <a href={route("chats", {id: event_id})} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
                                         Event Chat
                                     </a>                                    
                                 </div>

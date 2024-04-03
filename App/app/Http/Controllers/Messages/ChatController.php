@@ -23,6 +23,15 @@ class ChatController extends Controller
         ]);
     }
 
+    public function show($slug)
+    {        
+        $event = Chat::where('_id', '=', $slug)->first();
+
+        return Inertia::render('Events/EventInfo', [
+            'event' => $event
+        ]);
+    }
+
 
 
     public function storeChatData(Request $request)
