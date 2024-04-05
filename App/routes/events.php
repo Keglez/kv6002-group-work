@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExtCommContorller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Event\CreateEventsController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/events/create', [CreateEventsController::class, 'create']) -> name('store'); // This will create an event.
     Route::post('/profile/events/edit', [CreateEventsController::class, 'update']) -> name('update');
     Route::get('/profile/events.delete{id}', [CreateEventsController::class, 'destroy']) -> name('delete'); // This will delete/cancel an event.
+    Route::get('/profile/events.leave{id}', [ExtCommContorller::class, 'LeaveEvent']) -> name('leave'); // This will allow users to leave an event
 
 
     // Event Attendees Page

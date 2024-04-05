@@ -84,7 +84,7 @@ export default function ProfileNav({ className = "" }) {
                         </li>
                         <li>
                             <a
-                                href={route('event')}
+                                href={route('event.dashboard')}
                                 className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-font-col hover:text-tertiary-col"
                             >
                                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-font-col">

@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -29,16 +31,27 @@ class EventController extends Controller
      */
     public function eventDashboard(Request $request)
     {
-        $permission = 0;
+        $userId = Auth::id();
+        $user = User::where('_id', '=', $userId)->get()->first();
+
+        $permission = $user -> permission;
 
         if ($permission == 0) // Generate User Page
         {
-            $organiser = 'Keglez Co';        
-            $event = Event::where('event_orgi', '=', $organiser)->get();
+            $results = array();
+            $eventlist = $user->events;
+            foreach ($eventlist as $event) {
+                foreach($event as $a){ 
+                    $varible = Event::where('_id', '=', $a)->get()->first();
 
+                    array_push($results, $varible);
+                }
+            }
+            //get IDs from list f
+            //For each id from event list get event and store into events
+            
             return Inertia::render('Events/UserDashboard', [
-                'events' => $event,
-                'organiser' => $organiser,
+                'events' => $results, //Pass events to user dashboard
             ]);            
         }
         else // Generate Organiser Page

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\mailevent;
 use App\Models\User;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
 class ExtCommContorller extends Controller
 {
@@ -37,16 +38,24 @@ class ExtCommContorller extends Controller
         $userId = $request->id;
         $eventId = $request->eventId;
 
-    
-
         $user = User::where('_id', '=', $userId)->get()->first();
         $event = Event::find($eventId);
 
+
+        //adds user to events table
         $attendees = $event->event_attendees;
         array_push($attendees, (object) ['user_id' => $user->_id, 'user_perm'=>0]);
 
+
+        //adds events to user table
+        $events = $user->events;
+        array_push($events, (object) ['event_id'=> $event->_id]);
+
         $event -> event_attendees = $attendees;
         $event->save();
+
+        $user -> events = $events;
+        $user->save();
 
         $phonenumber = "+44 7547 603763";
         $useremail = $user->email;
@@ -60,8 +69,45 @@ class ExtCommContorller extends Controller
     
     
     public function LeaveEvent(Request $request){
-        $userId = $request->id;
-        $eventId = $request->eventId;
+        $userId = Auth::id();
+        $user = User::where('_id', '=', $userId)->get()->first();
+
+        $eventId = $request->id;
+        $event = Event::find($eventId);
+
+        $eventlist = $user->events;
+        //dd($eventlist);
+
+        $attendees = $event->event_attendees;
+
+
+    $increment = 0;
+        foreach ($eventlist as $e) {
+                $key = array_search($eventId, $e);
+                if($key != false)
+                {
+         array_splice($eventlist, $increment, 1);
+                }
+        $increment  = $increment +1;
+        }
+
+        $user->events = $eventlist;
+        $user->save();
+
+        $increment = 0;
+        foreach ($attendees as $attendee) {
+                $key = array_search($userId, $attendee);
+                if($key != false)
+                {
+         array_splice($attendees, $increment, 1);
+                }
+        $increment  = $increment +1;
+        }
+
+        $event -> event_attendees = $attendees;
+        $event->save();
+
+        return redirect('/profile/events');
     }
 }
 
