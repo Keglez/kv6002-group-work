@@ -9,20 +9,22 @@ export default function notif({ auth, mustVerifyEmail, status }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Profile
-                </h2>
-            }
         >
             <Head title="Profile" />
+            
+            <div className="flex max-w-full text-font-col">
+                <ProfileNav></ProfileNav>
 
-            <div className="py-12">
-                <div className="flex max-w-full text-font-col">
-                    <ProfileNav></ProfileNav>
-                    <div className="w-full px-6"></div>
+                <div className="w-full space-y-6 px-6">
+
+                    <header className="p-4 sm:p-8 bg-tertiary-col shadow sm:rounded-lg text-xl">
+                        Notifications
+                    </header>
+                
                 </div>
+                
             </div>
+        
         </AuthenticatedLayout>
     );
 }

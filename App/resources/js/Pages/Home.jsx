@@ -1,16 +1,15 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import NavBarGuest from '@/Components/NavBarGuest';
+
 
 import EventShelf from '@/Components/EventShelf';
 import PrimaryButton from '@/Components/PrimaryButton';
 
-import NavBarAuthed from '@/Components/NavBarAuthed';
 import Footer from '@/Components/Footer';
 import { Head, useRemember  } from '@inertiajs/react';
+import NavBar from '@/Components/NavBar';
 
 
 
-export default function Home({ events }) 
+export default function Home({ events, auth}) 
 {
     const [ev, setEvents] = useRemember([]);
 
@@ -27,8 +26,7 @@ export default function Home({ events })
             
             <Head title="Home" />
 
-            <NavBarGuest />
-            {/* <NavBarAuthed /> */}            
+            <NavBar prop={auth} />
             
             {/* Body Container */}
             <div className="flex flex-col w-full  text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">

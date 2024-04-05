@@ -11,7 +11,7 @@ import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 export default function EventInfo({ auth, event })
 {   
-    const user_id =auth.user._id;
+    const user_id = auth.user._id;
     const event_id = event._id;
     const event_orgi = event.event_orgi;
     const event_name = event.event_name;    
@@ -30,11 +30,11 @@ export default function EventInfo({ auth, event })
 
 
             {/* Display Navbar */}
-            <Navbar auth={true} />
+            <Navbar prop={auth} />
        
             
             {/* Body Container */}
-            <div className="min-h-screen flex w-full h-full text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">
+            <div className="flex w-full h-full text-font-col mx-auto max-w-7xl px-2 sm:p-5 lg:px-8">
                 
                 <div className="w-full">
 
@@ -110,7 +110,7 @@ export default function EventInfo({ auth, event })
                                     <a href={route("Joining_event", {id: user_id, eventId: event_id})} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
                                         Join Event
                                     </a>                                                                        
-                                    <a href={route("chats")} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
+                                    <a href={route("chats", {id: event_id})} className="w-full text-center px-4 py-2 bg-primary-col rounded border border-gray-500 hover:bg-red-500 focus:outline-none focus:border-gray-600 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
                                         Event Chat
                                     </a>                                    
                                 </div>
