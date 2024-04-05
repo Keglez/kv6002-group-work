@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
             'organiserID' => '',
             'events' => $request->events,
             'phone' => $request->phone,
+            'permission' => '0',
         ]);
 
         event(new Registered($user));

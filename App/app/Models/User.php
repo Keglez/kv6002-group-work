@@ -24,6 +24,7 @@ class User extends Authenticatable
         'organiserID',
         'events',
         'phone',
+        'permission',
     ];
 
     /**
