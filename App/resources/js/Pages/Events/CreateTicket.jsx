@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { Head, useForm  } from '@inertiajs/react';
 
 
-export default function CreateTicket({ organiser })
+export default function CreateTicket({ auth, organiser })
 {
     const {data, setData, post, processing, errors, reset} = useForm({
         tickets_title: '',
@@ -36,7 +36,7 @@ export default function CreateTicket({ organiser })
             <Head title="Create Ticket" />
 
             {/* Display Navbar */}
-            <Navbar auth={true} />
+            <Navbar prop={auth} />
        
             
             {/* Body Container */}

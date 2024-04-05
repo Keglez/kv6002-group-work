@@ -15,26 +15,36 @@ class EventAttendeesController extends Controller
      */
     public function attendeesDashboard(Request $request)
     {
-        $event = Event::where('event_slug', '=', $request->slug)->get()->first();
-        $users = [];
+        $permission = 0;
 
-
-        // Finds a user and pushes them to the user array.
-        if($event->event_attendees)
+        if ($permission == 1) // If the user is an organiser...
         {
-            foreach($event->event_attendees as $attendee)
+            $event = Event::where('event_slug', '=', $request->slug)->get()->first();
+            $users = [];
+    
+    
+            // Finds a user and pushes them to the user array.
+            if($event->event_attendees)
             {
-                $user = User::find($attendee['user_id']);
-                array_push($users, $user);
+                foreach($event->event_attendees as $attendee)
+                {
+                    $user = User::find($attendee['user_id']);
+                    array_push($users, $user);
+                }
             }
+    
+    
+            // Renders the webpage.
+            return Inertia::render('Events/EventAttendees', [
+                'event' => $event,
+                'users' => $users
+            ]);                        
         }
-
-
-        // Renders the webpage.
-        return Inertia::render('Events/EventAttendees', [
-            'event' => $event,
-            'users' => $users
-        ]);
+        else
+        {
+            // Go back to the user events dashboard.
+            return redirect('profile/events');
+        }
     }
 
 
