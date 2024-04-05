@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { Head, useForm  } from '@inertiajs/react';
 
 
-export default function CreateEvent({ auth, organiser })
+export default function CreateEvent({ organiser })
 {
     const {data, setData, post, processing, errors, reset} = useForm({
         event_orgi: organiser,
@@ -42,7 +42,7 @@ export default function CreateEvent({ auth, organiser })
             <Head title="Create Event" />
 
             {/* Display Navbar */}
-            <Navbar prop={auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}

@@ -9,7 +9,7 @@ import { Head  } from '@inertiajs/react';
 
 
 
-export default function TicketDashboard({ auth, events, organiser })
+export default function TicketDashboard({ events, organiser })
 {
     /**
      * generate all table rows from data.
@@ -44,7 +44,7 @@ export default function TicketDashboard({ auth, events, organiser })
             <Head title="Ticket Dashboard" />
 
             {/* Display Navbar */}
-            <Navbar prop={auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}

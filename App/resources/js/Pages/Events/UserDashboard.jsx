@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Head  } from '@inertiajs/react';
 
 
-export default function UserDashboard({ auth, events, organiser })
+export default function UserDashboard({ events, organiser })
 {
     /**
      * generate all table rows from data.
@@ -23,7 +23,6 @@ export default function UserDashboard({ auth, events, organiser })
                 <td className="align-top"><p className="m-3 line-clamp-4">{event.event_date}</p></td>
                 <td className="align-top"><p className="m-3 line-clamp-4">{event.event_location}</p></td>
                 <td><img className="my-3 mx-auto h-28 w-28 object-cover" src={event.event_thumb} alt="image" /></td>
-                
                 <td className="text-center m-3 space-x-2">
                     <a href={route('delete', {id: event._id} )} className="underline">Leave</a>
                 </td>
@@ -41,7 +40,7 @@ export default function UserDashboard({ auth, events, organiser })
             <Head title="Event Dashboard" />
 
             {/* Display Navbar */}
-            <Navbar prop={auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}

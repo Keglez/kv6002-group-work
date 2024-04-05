@@ -1,57 +1,114 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, defaults } from "chart.js/auto";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 
-const BarChart = ({ chartName, chartData }) => {
-  if (!Array.isArray(chartData) || chartData.length === 0) {
-    return <div>No data available</div>;
-  }
-  const backgroundColors = [
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
-    "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.8)",
+// No need to import CSS file when using Tailwind CSS
 
-    // More Colours
-  ];
+import revenueData from "./data/revenueData.json";
+import sourceData from "./data/sourceData.json";
 
+defaults.maintainAspectRatio = false;
+defaults.responsive = true;
+
+defaults.plugins.title.display = true;
+defaults.plugins.title.align = "start";
+defaults.plugins.title.font.size = 20;
+defaults.plugins.title.color = "black";
+
+const BarChart = () => {
   return (
-    <div className="bg-foreground-col rounded-md shadow-md max-w-md max-h-72 m-4 p-4">
-      <Bar
-        data={{
-          labels: chartData.map((data) => data.label),
-          datasets: chartData.map((data, index) => ({
-            label: data.label,
-            color: 'white',
-            data: [data.Amount], // Make array of data
-            backgroundColor: backgroundColors[index % backgroundColors.length], // Use different color for each dataset
-            borderRadius: 5,
-          })),
-        }}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              color: 'white',
-              text: chartName,
+    <div className="flex flex-row justify-center items-center content-center gap-8 w-full h-screen">
+      <div className="bg-gray-200 rounded-md shadow-md p-4 w-11/12 md:w-6/12 lg:w-5/12 xl:w-4/12">
+        <Line
+          data={{
+            labels: revenueData.map((data) => data.label),
+            datasets: [
+              {
+                label: "Revenue",
+                data: revenueData.map((data) => data.revenue),
+                backgroundColor: "#064FF0",
+                borderColor: "#064FF0",
+              },
+              {
+                label: "Cost",
+                data: revenueData.map((data) => data.cost),
+                backgroundColor: "#FF3030",
+                borderColor: "#FF3030",
+              },
+            ],
+          }}
+          options={{
+            elements: {
+              line: {
+                tension: 0.5,
+              },
             },
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
+            plugins: {
+              title: {
+                text: "Monthly Revenue & Cost",
+              },
             },
-          },
-        }}
-      />
+          }}
+        />
+      </div>
+
+      <div className="bg-gray-200 rounded-md shadow-md p-4 w-11/12 md:w-5/12 lg:w-4/12 xl:w-3/12">
+        <Bar
+          data={{
+            labels: sourceData.map((data) => data.label),
+            datasets: [
+              {
+                label: "Count",
+                data: sourceData.map((data) => data.value),
+                backgroundColor: [
+                  "rgba(43, 63, 229, 0.8)",
+                  "rgba(250, 192, 19, 0.8)",
+                  "rgba(253, 135, 135, 0.8)",
+                ],
+                borderRadius: 5,
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              title: {
+                text: "Revenue Source",
+              },
+            },
+          }}
+        />
+      </div>
+
+      <div className="bg-gray-200 rounded-md shadow-md p-4 w-11/12 md:w-4/12 lg:w-3/12 xl:w-2/12">
+        <Doughnut
+          data={{
+            labels: sourceData.map((data) => data.label),
+            datasets: [
+              {
+                label: "Count",
+                data: sourceData.map((data) => data.value),
+                backgroundColor: [
+                  "rgba(43, 63, 229, 0.8)",
+                  "rgba(250, 192, 19, 0.8)",
+                  "rgba(253, 135, 135, 0.8)",
+                ],
+                borderColor: [
+                  "rgba(43, 63, 229, 0.8)",
+                  "rgba(250, 192, 19, 0.8)",
+                  "rgba(253, 135, 135, 0.8)",
+                ],
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              title: {
+                text: "Revenue Sources",
+              },
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };

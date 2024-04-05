@@ -25,11 +25,7 @@ export default function EventShelf( props ) {
         searchBar = 
         <div className="flex bg-tertiary-col py-4 px-6 text-left rounded-md w-full space-x-5">
             <SearchInput placeholder="Enter event name..." />
-            <Dropdown defaultValue="0">
-                <option disabled value="0">No Filter</option>
-                <option value="2">Reccomended</option>
-                <option value="1">Recently Added</option>
-            </Dropdown>
+            <Dropdown placeholder="Filter" />
         </div>;
     } 
 

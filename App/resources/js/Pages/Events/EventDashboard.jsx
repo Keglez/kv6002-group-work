@@ -7,10 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Head  } from '@inertiajs/react';
 
 
-export default function EventDashboard({ auth, events, organiser, request })
+export default function EventDashboard({ events, organiser })
 {
-    console.log(auth);
-
     /**
      * generate all table rows from data.
      */
@@ -24,7 +22,6 @@ export default function EventDashboard({ auth, events, organiser, request })
                 <td className="align-top"><p className="m-3 line-clamp-4">{event.event_desc}</p></td>
                 <td className="align-top"><p className="m-3 line-clamp-4">{event.event_date}</p></td>
                 <td><img className="my-3 mx-auto h-28 w-28 object-cover" src={event.event_thumb} alt="image" /></td>
-                
                 <td className="text-center m-3 space-x-2">
                     <a href={route('attendees', {id: event.event_slug} )} className="underline">Attendees</a>
                     <span>|</span>
@@ -34,7 +31,8 @@ export default function EventDashboard({ auth, events, organiser, request })
                 </td>
             </tr> 
         );           
-    }        
+    }    
+
 
     /**
      * Render the page.
@@ -45,7 +43,7 @@ export default function EventDashboard({ auth, events, organiser, request })
             <Head title="Event Dashboard" />
 
             {/* Display Navbar */}
-            <Navbar prop={auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}

@@ -10,10 +10,11 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
+import { useState } from 'react';
 import { Head, useForm  } from '@inertiajs/react';
 
 
-export default function EditEvent({event, auth})
+export default function EditEvent({ event })
 {
     const {data, setData, post, processing, errors, reset} = useForm({
         event_orgi: event.event_orgi,
@@ -40,7 +41,7 @@ export default function EditEvent({event, auth})
             <Head title="Edit Event" />
 
             {/* Display Navbar */}
-            <Navbar prop={auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}

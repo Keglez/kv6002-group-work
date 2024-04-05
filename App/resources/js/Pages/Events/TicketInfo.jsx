@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function TicketInfo({ auth, tickets })
+export default function TicketInfo({ tickets })
 {    
     const tickets_id = tickets._id;
     const tickets_title = tickets.tickets_title;    
@@ -27,7 +27,7 @@ export default function TicketInfo({ auth, tickets })
 
 
             {/* Display Navbar */}
-            <Navbar prop={auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}

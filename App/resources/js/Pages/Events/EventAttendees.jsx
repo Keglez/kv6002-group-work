@@ -17,7 +17,7 @@ export default function EventAttendees(props)
 {
     /**
      * generate all table rows from data.
-     */    
+     */
     const event = props.event;
     const users = props.users;
     const rows = []
@@ -81,7 +81,7 @@ export default function EventAttendees(props)
             <Head title="Event Dashboard" />
 
             {/* Display Navbar */}
-            <Navbar prop={props.auth} />
+            <Navbar auth={true} />
        
             
             {/* Body Container */}
