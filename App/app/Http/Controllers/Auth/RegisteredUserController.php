@@ -24,6 +24,42 @@ class RegisteredUserController extends Controller
         return Inertia::render('Auth/Register');
     }
 
+        /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function create2(Request $request): Response
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => 'required|string|max:15',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'organiserID' => '',
+            'events' => $request->events,
+            'phone' => $request->phone,
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+        
+        return Inertia::render('Auth/VerifyPhone', [
+            'users' => $user,
+        ]);
+        
+        
+    }
+
+
+
     /**
      * Handle an incoming registration request.
      *
@@ -31,22 +67,15 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        
+        $user = $request->user;
+        $verification = $request->verification;
+        dd($verification);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/');
     }
 }
