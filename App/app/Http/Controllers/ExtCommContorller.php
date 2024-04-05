@@ -31,7 +31,6 @@ class ExtCommContorller extends Controller
         $subject = $title;
         $body = $text;
 
-
         Mail::to($useremail)->send(new mailevent($subject,$body));
     }
     public function JoinEvent(Request $request){
@@ -41,7 +40,13 @@ class ExtCommContorller extends Controller
     
 
         $user = User::where('_id', '=', $userId)->get()->first();
-        $event = Event::where('_id', '=', $eventId)->get();
+        $event = Event::find($eventId);
+
+        $attendees = $event->event_attendees;
+        array_push($attendees, (object) ['user_id' => $user->_id, 'user_perm'=>0]);
+
+        $event -> event_attendees = $attendees;
+        $event->save();
 
         $phonenumber = "+44 7547 603763";
         $useremail = $user->email;
