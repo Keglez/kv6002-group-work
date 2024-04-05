@@ -4,6 +4,7 @@ import ProfileNav from "./Partials/ProfileNav";
 import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
 import { Head } from "@inertiajs/react";
+import SocialLinks from "./Partials/SocialLinks";
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
@@ -35,6 +36,10 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
 
                     <div className="p-4 sm:p-8 bg-tertiary-col shadow sm:rounded-lg">
                         <DeleteUserForm className="max-w-xl" />
+                    </div>
+
+                    <div className="p-4 sm:p-8 bg-tertiary-col shadow sm:rounded-lg">
+                        <SocialLinks className="max-w-xl" />
                     </div>
                 </div>
             </div>

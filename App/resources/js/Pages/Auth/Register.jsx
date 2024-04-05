@@ -12,6 +12,8 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        events: [],
+        phone: '',
     });
 
     useEffect(() => {
@@ -104,6 +106,24 @@ export default function Register() {
                     />
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="phone" value="Phone" />
+
+                    <TextInput
+                        id="phone"
+                        type="phone"
+                        name="phone"
+                        value={data.phone}
+                        placeholder="Enter Phone Number"
+                        className="mt-1 pl-4 block w-full"
+                        autoComplete="username"
+                        onChange={(e) => setData('phone', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.phone} className="mt-2" />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
