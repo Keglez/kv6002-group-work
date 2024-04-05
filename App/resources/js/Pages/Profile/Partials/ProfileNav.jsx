@@ -54,6 +54,23 @@ export default function ProfileNav({ className = "" }) {
 
                         <li>
                             <a
+                                href={route("tickets")}
+                                className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-font-col hover:text-tertiary-col"
+                            >
+                                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-font-col">
+                                    <i className="bx bx-music" />
+                                </span>
+                                <span className="text-sm font-medium">
+                                    Tickets
+                                </span>
+                                <span className="ml-auto mr-6 text-sm bg-red-100 rounded-full px-3 py-px text-blue-600">
+                                    0
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
                                 href="#"
                                 className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-font-col hover:text-tertiary-col"
                             >
