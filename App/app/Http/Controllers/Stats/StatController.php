@@ -7,14 +7,18 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class StatController extends Controller
 {
     public function create()
     {
+        $userId = Auth::id();
+        $user = User::find($userId);
         $event = Event::all();
         return Inertia::render('Stats/StatList', [
             'events' => $event,
+            'userPermissions' => $user->permission,
         ]);
     }
 

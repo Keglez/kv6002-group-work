@@ -114,7 +114,7 @@ const App = ({events, userPermissions,auth }) => {
                         title={category.title}
                         catePerm={category.permission}
                         contents={category.contents}
-                        userPermission={3} // Requires User setup to retrieve permissions for above 3 is max perms
+                        userPermission={userPermissions} // Requires User setup to retrieve permissions for above 3 is max perms
                     />
                 ))}
 
