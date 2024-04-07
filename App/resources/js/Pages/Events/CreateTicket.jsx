@@ -27,7 +27,7 @@ export default function CreateTicket({ auth, organiser })
     const submit = (e) => {            
 
         e.preventDefault();
-        post(route('store'));
+        post(route('ticket.store'));
     }
 
     return (    

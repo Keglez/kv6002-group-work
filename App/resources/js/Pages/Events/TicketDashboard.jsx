@@ -27,7 +27,7 @@ export default function TicketDashboard({ auth, events, organiser })
                 <td className="text-center m-3 space-x-2">
                     {/*<a href={route('edit', {id: event._id} )} className="underline">Edit</a>*/}
                     <span>|</span>
-                    <a href={route('delete', {id: event._id} )} className="underline">Delete</a>
+                    <a href={route('ticket.delete', {id: event._id} )} className="underline">Delete</a>
                 </td>
             </tr> 
         );
@@ -60,7 +60,7 @@ export default function TicketDashboard({ auth, events, organiser })
 
 
                         <div className="w-1/3 mx-6 rounded-lg text-right bg-foreground-col">
-                            <a href={route('create')}><PrimaryButton>Create Ticket</PrimaryButton></a>
+                            <a href={route('ticket.create')}><PrimaryButton>Create Ticket</PrimaryButton></a>
                         </div>
                     </h1>
 
