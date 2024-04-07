@@ -10,4 +10,9 @@ class Organiser extends Model
 {    
     protected $connection = 'mongodb';
     protected $collection = 'organisers';
+
+    protected $fillable = [
+        'orgi_name',
+        'orgi_code',
+    ];
 }

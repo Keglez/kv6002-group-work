@@ -19,6 +19,19 @@ class CreateEventsController extends Controller
 
         // Create and store new event.
         $event = new Event;
+
+        $request->validate([
+            'event_name' => 'required|string|max:255',
+            'event_desc' => 'required|string|max:255',
+            'event_orgi' => 'required|string|max:255',
+            'event_date' => 'required',
+            'event_date' => 'required',
+            'event_start_time' => 'required',
+            'event_end_time' => 'required',
+            'event_thumb' => 'required|string|max:255',
+            'event_location' => 'required|string|max:255',
+        ]);
+
         
         $formatted_date = str_replace("-", "/", $request->event_date) . " [" . $request->event_start_time . " - " . $request->event_end_time . "]";
         $event_slug = strtolower(str_replace(" ", "-", $request->event_orgi) . "-" . str_replace(" ", "-", $request->event_name));
@@ -59,6 +72,18 @@ class CreateEventsController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'event_name' => 'required|string|max:255',
+            'event_desc' => 'required|string|max:255',
+            'event_orgi' => 'required|string|max:255',
+            'event_date' => 'required',
+            'event_date' => 'required',
+            'event_start_time' => 'required',
+            'event_end_time' => 'required',
+            'event_thumb' => 'required|string|max:255',
+            'event_location' => 'required|string|max:255',
+        ]);
+
         $event = Event::find($request->id);
 
         $formatted_date = str_replace("-", "/", $request->event_date) . " [" . $request->event_start_time . " - " . $request->event_end_time . "]";

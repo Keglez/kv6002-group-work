@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Event;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
@@ -15,7 +16,9 @@ class EventAttendeesController extends Controller
      */
     public function attendeesDashboard(Request $request)
     {
-        $permission = 0;
+        $userId = Auth::id();
+        $user = User::where('_id', '=', $userId)->get()->first();
+        $permission = $user->permission;
 
         if ($permission == 1) // If the user is an organiser...
         {

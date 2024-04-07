@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
 use App\Models\User;
+use App\Models\Organiser;
 
 class EventController extends Controller
 {
@@ -33,8 +34,7 @@ class EventController extends Controller
     {
         $userId = Auth::id();
         $user = User::where('_id', '=', $userId)->get()->first();
-
-        $permission = $user -> permission;
+        $permission = $user->permission;
 
         if ($permission == 0) // Generate User Page
         {
@@ -59,17 +59,15 @@ class EventController extends Controller
             /**
              *  Generating dummy data for the user's joined events.
              */ 
-            $event_ids = array("65f2ece71603d010135d9d18", "65ff830dc07e9d98dc01d795", "65ff838cc07e9d98dc01d796");
-            $event_list = array();
-
-            foreach($event_ids as $id)
-            {
-                $event = Event::find($id);
-                array_push($event_list, $event);
-            }      
+            
+            $organiser = Organiser::where('orgi_code', '=', $user->organiserID)->get()->first();
+            
+            $orgi_name = $organiser->orgi_name;
+            $event = Event::where('event_orgi', '=', $orgi_name)->get();
 
             return Inertia::render('Events/EventDashboard', [
-                'events' => $event_list 
+                'events' => $event,
+                'organiser' => $orgi_name,
             ]);
         }
     }
@@ -80,14 +78,19 @@ class EventController extends Controller
      */
     public function createEventForm()
     {
-        $permission = 0;
-        //$event = Event::where('event_name', '=', 'Pizza Party Extravaganza')->first();
-        $organiser = "Keglez Co";
+        // Get user permission.
+        $userId = Auth::id();
+        $user = User::where('_id', '=', $userId)->get()->first();
+        $permission = $user->permission;                
 
         if($permission == 1) // If the user is an organiser...
         {
+            // Get organiser information.
+            $organiser = Organiser::where('orgi_code', '=', $user->organiserID)->get()->first();
+            $orgi_name = $organiser->orgi_name;
+
             return Inertia::render('Events/CreateEvent', [
-                'organiser' => $organiser,
+                'organiser' => $orgi_name,
             ]);
         }
 
@@ -100,7 +103,10 @@ class EventController extends Controller
      */
     public function editForm(Request $request)
     {
-        $permission = 0; 
+        // Get user permission.
+        $userId = Auth::id();
+        $user = User::where('_id', '=', $userId)->get()->first();
+        $permission = $user->permission;
 
         if ($permission == 1) // If the user is an organiser...
         {

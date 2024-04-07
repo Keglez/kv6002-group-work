@@ -55,7 +55,7 @@ export default function CreateEvent({ auth, organiser })
                             Create Event
                         </div>                        
                         <div className="w-1/3 mx-6 rounded-lg text-right bg-foreground-col">
-                            <a href={route('event')}><PrimaryButton><FontAwesomeIcon icon={faLeftLong} /></PrimaryButton></a>
+                            <a href={route('event.dashboard')}><PrimaryButton><FontAwesomeIcon icon={faLeftLong} /></PrimaryButton></a>
                         </div>
                     </h1>
 
@@ -73,7 +73,7 @@ export default function CreateEvent({ auth, organiser })
                                     disabled
                                     onChange={(e) => setData('event_orgi', e.target.value)}
                                 />
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_orgi} className="my-2" />
                             </div>
 
                             <div>
@@ -90,7 +90,7 @@ export default function CreateEvent({ auth, organiser })
                                     onChange={(e) => setData('event_name', e.target.value)}
                                 />
 
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_name} className="my-2" />
                             </div>
 
                             <div>
@@ -107,7 +107,7 @@ export default function CreateEvent({ auth, organiser })
                                     onChange={(e) => setData('event_desc', e.target.value)}
                                 />
 
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_desc} className="my-2" />
                             </div>
 
                             <div>
@@ -123,7 +123,7 @@ export default function CreateEvent({ auth, organiser })
                                     onChange={(e) => setData('event_date', e.target.value)}
                                 />
 
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_date} className="my-2" />
                             </div>
 
                             <div>
@@ -139,7 +139,7 @@ export default function CreateEvent({ auth, organiser })
                                     onChange={(e) => setData('event_start_time', e.target.value)}
                                 />
 
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_start_time} className="my-2" />
                             </div>
 
                             <div>
@@ -155,7 +155,7 @@ export default function CreateEvent({ auth, organiser })
                                     onChange={(e) => setData('event_end_time', e.target.value)}
                                 />
 
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_end_time} className="my-2" />
                             </div>
 
                             <div>
@@ -171,7 +171,7 @@ export default function CreateEvent({ auth, organiser })
                                     isFocused={true}
                                     onChange={(e) => setData('event_location', e.target.value)}
                                 />
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_location} className="my-2" />
                             </div>
 
                             <div>
@@ -198,7 +198,7 @@ export default function CreateEvent({ auth, organiser })
                                     onChange={handleChange}
                                 />*/}
 
-                                <InputError message={errors.email} className="mt-2" />
+                                <InputError message={errors.event_thumb} className="my-2" />
                             </div>
 
 
